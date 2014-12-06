@@ -11,8 +11,10 @@
     <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
     <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
   </head>
-  <body>
+  <body class="background-color">
     @header()
-    @content
+    <div id="container" class="container">
+      @content
+    </div>
   </body>
 </html>
