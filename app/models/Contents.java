@@ -15,15 +15,17 @@ import play.db.ebean.Model;
 @Entity
 public class Contents extends Model {
   @Id
-  Long id;
+  public Long id;
   @Required
-  String title;
+  public String title;
   @Required
-  String article;
+  public String article;
   @ManyToOne
-  Users user;
+  public Users user;
   @CreatedTimestamp
-  Date createdDate;
+  public Date createdDate;
   @UpdatedTimestamp
-  Date updatedDate;
+  public Date updatedDate;
+
+  public static Finder<Long, Contents> find = new Finder(Long.class, Contents.class);
 }

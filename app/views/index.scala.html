@@ -1,7 +1,12 @@
-@(message: String)
+@(title: String)(contents: List[Contents])
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message, style = "Java")
-    
+@main(title) {
+  @for(content <- contents) {
+    <div>
+      <span>@content.title</span>
+      <span>@content.user.name</span>
+      <span>@content.updatedDate.format("yyyy/MM/dd")</span>
+    </div>
+  }
+  <a href="@routes.Blog.create">create</a>
 }
