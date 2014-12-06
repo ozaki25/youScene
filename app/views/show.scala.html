@@ -3,8 +3,10 @@
 @main(content.title) {
   <div class="show-title">@content.title</div>
   <span>@(content.user.name)(@content.user.sectionName)</span>
-  <span>@(content.updatedDate.format("yyyy/MM/d-HH:m"))</span>
+  <span>@(content.updatedDate.format("yyyy/MM/dd HH:mm"))</span>
   <pre class="show-article">@Html(content.article)</pre>
-  <a class="btn btn-info" href="@routes.Blog.edit(content.id)">編集</a>
-  <a class="btn btn-danger" href="@routes.Blog.delete(content.id)">削除</a>
+  <div class="btn-operation-content">
+    <a class="btn btn-youScene" href="@routes.Blog.edit(content.id)">編集</a>
+    <a class="btn btn-default" href="@routes.Blog.delete(content.id)">削除</a>
+  </div>
 }

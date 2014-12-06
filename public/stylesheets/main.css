@@ -1,5 +1,26 @@
-body.background-color {
+body {
   background-color:#99cc77;
+}
+
+a {
+  color: #339933;
+}
+
+a:hover,
+a:focus {
+  color: #336633;
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+  color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #006633;
 }
 
 .container {
@@ -8,7 +29,73 @@ body.background-color {
 }
 
 @media (min-width: 1200px) {
-  #container {
+  .container {
     max-width: 850px;
   }
+}
+
+.index-content{
+  border-bottom:solid 1px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.index-title {
+  font-size:130%;
+}
+
+.col-md-date,
+.col-md-name {
+  min-height: 1px;
+  padding-left: 15px;
+  float: left;
+}
+
+.col-md-date {
+  width:90px;
+}
+
+.col-md-name {
+  width:auto;
+}
+
+.from-group {
+  margin-right:25px;
+  margin-left:25px;
+  margin-bottom:25px;
+}
+
+textarea.form-control {
+  height:350px;
+}
+
+.btn-create,
+.btn-update {
+  text-align:center;
+}
+
+.show-title{
+  font-size:200%;
+  color:#006633;
+  font-weight: bold;
+}
+
+.btn-operation-content{
+  margin-bottom:25px;
+}
+
+.btn-youScene {
+  color: #ffffff;
+  background-color: #66cc66;
+  border-color: #33cc66;
+}
+
+.btn-youScene:hover,
+.btn-youScene:focus,
+.btn-youScene:active,
+.btn-youScene.active,
+.open .dropdown-toggle.btn-youScene {
+  color: #ffffff;
+  background-color: #66cc00;
+  border-color: #33cc00;
 }
