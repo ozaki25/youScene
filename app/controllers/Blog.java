@@ -33,7 +33,7 @@ public class Blog extends Controller {
     content.user = loginUser();
     content.save();
 
-    return redirect("/");
+    return redirect(routes.Blog.index());
   }
 
   public static Result edit(Long contentId) {
@@ -51,7 +51,14 @@ public class Blog extends Controller {
     content = form.get();
     content.update(contentId);
 
-    return redirect("/");
+    return redirect(routes.Blog.index());
+  }
+
+  public static Result delete(Long contentId) {
+    Contents content = new Contents();
+    content = Contents.find.byId(contentId);
+    content.delete();
+    return redirect(routes.Blog.index());
   }
 
   public static Users loginUser() {
