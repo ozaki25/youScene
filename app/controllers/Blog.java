@@ -16,8 +16,7 @@ public class Blog extends Controller {
   }
 
   public static Result show(Long contentId) {
-    Contents content = Contents.find.byId(contentId);
-    return ok(show.render(content));
+    return ok(show.render(Contents.find.byId(contentId)));
   }
 
   public static Result create() {
@@ -33,6 +32,24 @@ public class Blog extends Controller {
     content = form.get();
     content.user = loginUser();
     content.save();
+
+    return redirect("/");
+  }
+
+  public static Result edit(Long contentId) {
+    Contents content = new Contents();
+    content = Contents.find.byId(contentId);
+    return ok(edit.render("記事編集",contentForm.fill(content),content));
+  }
+
+  public static Result update(Long contentId) {
+    Form<Contents> form = contentForm.bindFromRequest();
+    if(form.hasErrors()) return badRequest(create.render("記事編集",form));
+
+    Contents content = new Contents();
+    content = Contents.find.byId(contentId);
+    content = form.get();
+    content.update(contentId);
 
     return redirect("/");
   }

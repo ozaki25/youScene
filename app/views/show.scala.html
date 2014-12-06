@@ -5,4 +5,5 @@
   <span>@(content.user.name)(@content.user.sectionName)</span>
   <span>@(content.updatedDate.format("yyyy/MM/d-HH:m"))</span>
   <pre class="show-article">@Html(content.article)</pre>
+  <a href="@routes.Blog.edit(content.id)" class="btn btn-info">編集</a>
 }

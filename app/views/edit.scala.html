@@ -1,0 +1,19 @@
+@(title: String)(form: Form[Contents])(content: Contents)
+
+@main(title) {
+  @helper.form(action = routes.Blog.update(content.id), 'class -> "from-group") {
+    @helper.inputText(
+      form("title"),
+      '_label -> "タイトル",
+      'class -> "form-control",
+      '_help -> ""
+    )
+    @helper.textarea(
+      form("article"),
+      '_label -> "本文",
+      'class -> "form-control",
+      '_help -> ""
+    )
+    <input type="submit" class="btn btn-primary" value="更新">
+  }
+}
