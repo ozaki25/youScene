@@ -10,8 +10,14 @@ import views.html.*;
 
 public class Blog extends Controller {
   final static Form<Contents> contentForm = form(Contents.class);
+
   public static Result index() {
     return ok(index.render("記事一覧", Contents.find.all()));
+  }
+
+  public static Result show(Long contentId) {
+    Contents content = Contents.find.byId(contentId);
+    return ok(show.render(content));
   }
 
   public static Result create() {

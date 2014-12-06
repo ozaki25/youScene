@@ -3,9 +3,9 @@
 @main(title) {
   @for(content <- contents) {
     <div>
-      <span>@content.title</span>
+      <a href="@routes.Blog.show(content.id)">@content.title</a>
       <span>@content.user.name</span>
-      <span>@content.updatedDate.format("yyyy/MM/dd")</span>
+      <span>@content.updatedDate.format("yyyy/M/d")</span>
     </div>
   }
   <a href="@routes.Blog.create">create</a>

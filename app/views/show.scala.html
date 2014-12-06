@@ -1,0 +1,8 @@
+@(content: Contents)
+
+@main(content.title) {
+  <div class="show-title">@content.title</div>
+  <span>@(content.user.name)(@content.user.sectionName)</span>
+  <span>@(content.updatedDate.format("yyyy/MM/d-HH:m"))</span>
+  <pre class="show-article">@Html(content.article)</pre>
+}
