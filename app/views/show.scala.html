@@ -1,9 +1,11 @@
 @(content: Contents)
 
 @main(content.title) {
-  <div class="show-title">@content.title</div>
-  <span>@(content.user.name)(@content.user.sectionName)</span>
-  <span>@(content.updatedDate.format("yyyy/MM/dd HH:mm"))</span>
+  <div class="show-content-header">
+    <div class="show-title">@content.title</div>
+    <span>@(content.user.name)(@content.user.sectionName)</span>
+    <span>@(content.updatedDate.format("yyyy/MM/dd HH:mm"))</span>
+  </div>
   <pre class="show-article">@Html(content.article)</pre>
   <div class="btn-operation-content">
     <a class="btn btn-youScene" href="@routes.Blog.edit(content.id)">編集</a>

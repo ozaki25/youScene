@@ -65,19 +65,26 @@ a:focus {
   margin-bottom:25px;
 }
 
-textarea.form-control {
-  height:350px;
-}
-
 .btn-create,
 .btn-update {
   text-align:center;
+}
+
+.show-content-header {
+  border-bottom:solid 1px;
 }
 
 .show-title{
   font-size:200%;
   color:#006633;
   font-weight: bold;
+}
+
+.show-article {
+  background-color: #fffff0;
+  border: none;
+  border-radius: 0px;
+  border-bottom:solid 1px;
 }
 
 .btn-operation-content{

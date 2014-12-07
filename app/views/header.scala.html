@@ -5,8 +5,12 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="@routes.Blog.create">Create</a></li>
-        <li><a href="#">尾崎 勇一(ITプロデュース部)</a></li>
+        @if(session.get("username") == null) {
+          <li><a href="@routes.YouScene.entry">新規登録</a></li>
+        } else {
+        <li><a href="@routes.Blog.create">記事を書く</a></li>
+          <li><a href="#">@(session.get("name"))(@session.get("sectionName"))</a></li>
+        }
       </ul>
     </div>
   </div>

@@ -12,5 +12,11 @@ POST    /youScene/content/:id/edit    controllers.Blog.update(id: Long)
 GET     /youScene/content/:id/delete  controllers.Blog.delete(id: Long)
 GET     /youScene/content/:id         controllers.Blog.show(id: Long)
 
+GET     /youScene/signup              controllers.YouScene.entry()
+POST    /youScene/signup              controllers.YouScene.signup()
+GET     /youScene/login               controllers.YouScene.login()
+POST    /youScene/login               controllers.YouScene.authenticate()
+GET     /youScene/logout              controllers.YouScene.logout()
+
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file                 controllers.Assets.at(path="/public", file)

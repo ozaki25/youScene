@@ -1,0 +1,25 @@
+@(title: String)(form: Form[Users])
+
+@main(title) {
+  @helper.form(routes.YouScene.signup, 'class -> "from-group") {
+    @helper.inputText(
+      form("userId"),
+      '_label -> "ユーザID",
+      'class -> "form-control input-sm",
+      '_help -> ""
+    )
+    @helper.inputText(
+      form("name"),
+      '_label -> "名前",
+      'class -> "form-control input-sm",
+      '_help -> ""
+    )
+    @helper.inputText(
+      form("sectionName"),
+      '_label -> "部署名",
+      'class -> "form-control input-sm",
+      '_help -> ""
+    )
+    <input type="submit" class="btn btn-youScene" value="登録">
+  }
+}

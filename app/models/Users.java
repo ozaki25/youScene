@@ -3,6 +3,7 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
@@ -10,15 +11,16 @@ import play.db.ebean.Model.Finder;
 public class Users extends Model {
   @Id
   public Long id;
+  @Required
+  public String userId;
+  @Required
   public String name;
+  @Required
   public String sectionName;
 
   public static Finder<Long, Users> find = new Finder(Long.class, Users.class);
 
-  public static void setUser() {
-    Users user = new Users();
-    user.name = "尾崎 勇一";
-    user.sectionName = "ITプロデュース部";
-    user.save();
+  public static Users findByUserId(String userId) {
+    return find.where().eq("userId", userId).findList().get(0);
   }
 }

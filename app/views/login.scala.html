@@ -1,0 +1,19 @@
+@(title: String)(form: Form[Login])
+
+@main(title) {
+  @helper.form(routes.YouScene.authenticate, 'class -> "from-group") {
+    @helper.inputText(
+      form("userId"),
+      '_label -> "ユーザID",
+      'class -> "form-control input-sm",
+      '_help -> ""
+    )
+    @helper.inputPassword(
+      form("password"),
+      '_label -> "パスワード",
+      'class -> "form-control input-sm",
+      '_help -> ""
+    )
+    <input type="submit" class="btn btn-youScene" value="ログイン">
+  }
+}
