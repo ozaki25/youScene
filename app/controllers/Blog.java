@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Contents;
+import models.Likes;
 import models.Users;
 import play.*;
 import static play.data.Form.*;
@@ -21,7 +22,7 @@ public class Blog extends Controller {
   public static Result show(Long contentId) {
     Contents content = Contents.find.byId(contentId);
     Users user = YouScene.loginUser();
-    if(user != content.author) content.addAccess(user);
+    if(!content.liked(user) && !content.author(user)) content.addAccess(user);
 
     return ok(show.render(content));
   }
@@ -64,5 +65,13 @@ public class Blog extends Controller {
     content.delete();
 
     return redirect(routes.Blog.index());
+  }
+
+  public static Result like(Long contentId) {
+    Contents content = Contents.find.byId(contentId);
+    Users user = YouScene.loginUser();
+    content.addLike(user);
+
+    return redirect(routes.Blog.show(contentId));
   }
 }

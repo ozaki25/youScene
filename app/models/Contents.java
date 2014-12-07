@@ -30,11 +30,27 @@ public class Contents extends Model {
   public Date updatedDate;
   @OneToMany(mappedBy="content")
   public List<Accesses> accesses;
+  @OneToMany(mappedBy="content")
+  public List<Likes> likes;
 
   public static Finder<Long, Contents> find = new Finder(Long.class, Contents.class);
 
   public void addAccess(Users user) {
     Accesses access =new Accesses(this,user);
     access.save();
+  }
+
+  public void addLike(Users user) {
+    Likes like = new Likes(this,user);
+    like.save();
+  }
+
+  public boolean liked(Users user) {
+    int count = Likes.find.where().eq("content", this).eq("user", user).findRowCount();
+    return count >= 1;
+  }
+
+  public boolean author(Users user) {
+    return this.author == user;
   }
 }

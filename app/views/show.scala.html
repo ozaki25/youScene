@@ -18,7 +18,14 @@
         <div class="col-md-6 feedback-count">
           <div>
             <div>アクセス@content.accesses.size回</div>
-            <div>いいね！1回</div>
+            <div>
+              @if(content.liked(YouScene.loginUser)) {
+                <a class="btn btn-youScene btn-xs disabled">いいね！</a>
+              } else {
+                <a class="btn btn-youScene btn-xs" href="@routes.Blog.like(content.id)">いいね！</a>
+              }
+              @content.likes.size回
+            </div>
           </div>
         </div>
       </div>
