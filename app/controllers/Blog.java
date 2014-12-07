@@ -19,7 +19,11 @@ public class Blog extends Controller {
 
   @Authenticated(Authenticate.class)
   public static Result show(Long contentId) {
-    return ok(show.render(Contents.find.byId(contentId)));
+    Contents content = Contents.find.byId(contentId);
+    Users user = YouScene.loginUser();
+    if(user != content.author) content.addAccess(user);
+
+    return ok(show.render(content));
   }
 
   @Authenticated(Authenticate.class)
@@ -32,7 +36,7 @@ public class Blog extends Controller {
     if(form.hasErrors()) return badRequest(create.render("新規作成",form));
 
     Contents content = form.get();
-    content.user = YouScene.loginUser();
+    content.author = YouScene.loginUser();
     content.save();
 
     return redirect(routes.Blog.index());

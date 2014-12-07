@@ -21,6 +21,6 @@ public class Users extends Model {
   public static Finder<Long, Users> find = new Finder(Long.class, Users.class);
 
   public static Users findByUserId(String userId) {
-    return find.where().eq("userId", userId).findList().get(0);
+    return find.where().eq("userId", userId).findUnique();
   }
 }

@@ -1,14 +1,30 @@
 @(content: Contents)
 
 @main(content.title) {
-  <div class="show-content-header">
-    <div class="show-title">@content.title</div>
-    <span>@(content.user.name)(@content.user.sectionName)</span>
-    <span>@(content.updatedDate.format("yyyy/MM/dd HH:mm"))</span>
-  </div>
-  <pre class="show-article">@Html(content.article)</pre>
-  <div class="btn-operation-content">
-    <a class="btn btn-youScene" href="@routes.Blog.edit(content.id)">編集</a>
-    <a class="btn btn-default" href="@routes.Blog.delete(content.id)">削除</a>
+  <div class="row">
+    <div class="col-md-9 show-content">
+      <div class="show-content-header">
+        <div class="show-title">@content.title</div>
+        <div class="show-date">@(content.updatedDate.format("yyyy/MM/dd HH:mm"))</div>
+      </div>
+      <pre class="show-article">@Html(content.article)</pre>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="btn-operation-content">
+            <a class="btn btn-youScene" href="@routes.Blog.edit(content.id)">編集</a>
+            <a class="btn btn-default" href="@routes.Blog.delete(content.id)">削除</a>
+          </div>
+        </div>
+        <div class="col-md-6 feedback-count">
+          <div>
+            <div>アクセス@content.accesses.size回</div>
+            <div>いいね！1回</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="show-author">@(content.author.name)(@content.author.sectionName)</div>
+    </div>
   </div>
 }

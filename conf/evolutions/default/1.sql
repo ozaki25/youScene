@@ -3,11 +3,19 @@
 
 # --- !Ups
 
+create table accesses (
+  id                        bigint not null,
+  content_id                bigint,
+  user_id                   bigint,
+  created_date              timestamp not null,
+  constraint pk_accesses primary key (id))
+;
+
 create table contents (
   id                        bigint not null,
   title                     varchar(255),
   article                   varchar(255),
-  user_id                   bigint,
+  author_id                 bigint,
   created_date              timestamp not null,
   updated_date              timestamp not null,
   constraint pk_contents primary key (id))
@@ -21,12 +29,18 @@ create table users (
   constraint pk_users primary key (id))
 ;
 
+create sequence accesses_seq;
+
 create sequence contents_seq;
 
 create sequence users_seq;
 
-alter table contents add constraint fk_contents_user_1 foreign key (user_id) references users (id) on delete restrict on update restrict;
-create index ix_contents_user_1 on contents (user_id);
+alter table accesses add constraint fk_accesses_content_1 foreign key (content_id) references contents (id) on delete restrict on update restrict;
+create index ix_accesses_content_1 on accesses (content_id);
+alter table accesses add constraint fk_accesses_user_2 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_accesses_user_2 on accesses (user_id);
+alter table contents add constraint fk_contents_author_3 foreign key (author_id) references users (id) on delete restrict on update restrict;
+create index ix_contents_author_3 on contents (author_id);
 
 
 
@@ -34,11 +48,15 @@ create index ix_contents_user_1 on contents (user_id);
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists accesses;
+
 drop table if exists contents;
 
 drop table if exists users;
 
 SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists accesses_seq;
 
 drop sequence if exists contents_seq;
 

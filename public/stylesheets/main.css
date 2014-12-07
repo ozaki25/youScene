@@ -70,6 +70,10 @@ a:focus {
   text-align:center;
 }
 
+.show-content {
+  border-right:solid 1px;
+}
+
 .show-content-header {
   border-bottom:solid 1px;
 }
@@ -80,11 +84,23 @@ a:focus {
   font-weight: bold;
 }
 
+.show-date{
+  text-align:right;
+}
+
 .show-article {
   background-color: #fffff0;
   border: none;
   border-radius: 0px;
   border-bottom:solid 1px;
+}
+
+.show-author {
+  margin-top:10px;
+}
+
+.feedback-count {
+  text-align:right;
 }
 
 .btn-operation-content{
