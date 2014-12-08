@@ -37,12 +37,14 @@
     </div>
     <div class="col-md-3">
       <div class="show-author">@(content.author.name)(@content.author.sectionName)</div>
-      <h3>最新の記事</h3>
-      @for(content <- latestContents) {
-        <div class="latest-content">
-          <a href="@routes.Blog.show(content.id)">@content.title</a>
-        </div>
-      }
+      <div class="latest-contents">
+        <h3>最新の記事</h3>
+        @for(content <- latestContents) {
+          <div class="latest-content">
+            <a href="@routes.Blog.show(content.id)">@content.title</a>
+          </div>
+        }
+      </div>
     </div>
   </div>
 }

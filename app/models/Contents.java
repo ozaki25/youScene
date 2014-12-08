@@ -58,4 +58,13 @@ public class Contents extends Model {
   public static List<Contents> findLatestContents() {
     return find.orderBy().desc("createdDate").setMaxRows(5).findList();
   }
+
+  public static List<Contents> findPagingList(int page) {
+    return find.findPagingList(2).getPage(page-1).getList();
+  }
+
+  public static boolean isLastPage(int page) {
+    int lastPage = find.findPagingList(2).getTotalPageCount();
+    return page == lastPage;
+  }
 }

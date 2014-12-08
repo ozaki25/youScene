@@ -117,6 +117,10 @@ a:focus {
   margin-left:5px;
 }
 
+.latest-contents {
+  margin-bottom:10px;
+}
+
 .btn-youScene {
   color: #ffffff;
   background-color: #91cf3b;

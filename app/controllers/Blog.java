@@ -16,8 +16,9 @@ public class Blog extends Controller {
   final static Form<Contents> contentForm = form(Contents.class);
 
   @Authenticated(Authenticate.class)
-  public static Result index() {
-    return ok(index.render("記事一覧", Contents.find.all()));
+  public static Result index(int page) {
+    List<Contents> contents = Contents.findPagingList(page);
+    return ok(index.render("記事一覧", contents, page));
   }
 
   @Authenticated(Authenticate.class)
@@ -43,7 +44,7 @@ public class Blog extends Controller {
     content.author = YouScene.loginUser();
     content.save();
 
-    return redirect(routes.Blog.index());
+    return redirect(routes.Blog.index(1));
   }
 
   @Authenticated(Authenticate.class)
@@ -60,14 +61,14 @@ public class Blog extends Controller {
     content = form.get();
     content.update(contentId);
 
-    return redirect(routes.Blog.index());
+    return redirect(routes.Blog.index(1));
   }
 
   public static Result delete(Long contentId) {
     Contents content = Contents.find.byId(contentId);
     content.delete();
 
-    return redirect(routes.Blog.index());
+    return redirect(routes.Blog.index(1));
   }
 
   public static Result like(Long contentId) {

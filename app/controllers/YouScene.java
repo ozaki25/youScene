@@ -23,7 +23,7 @@ public class YouScene extends Controller {
     Users user = form.get();
     user.save();
 
-    return redirect(routes.Blog.index());
+    return redirect(routes.Blog.index(1));
   }
 
   public static Result login() {
@@ -44,7 +44,7 @@ public class YouScene extends Controller {
     session().put("name",user.name);
     session().put("sectionName",user.sectionName);
 
-    return redirect(routes.Blog.index());
+    return redirect(routes.Blog.index(1));
   }
 
   public static Result logout() {

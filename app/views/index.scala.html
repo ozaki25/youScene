@@ -1,4 +1,4 @@
-@(title: String)(contents: List[Contents])
+@(title: String)(contents: List[Contents])(page: Integer)
 
 @main(title) {
   @for(content <- contents) {
@@ -10,4 +10,18 @@
       </div>
     </div>
   }
+  <nav>
+    <ul class="pager">
+      @if(page == 1) {
+        <li class="disabled"><a href="#">前のページ</a></li>
+      } else {
+        <li><a href="@routes.Blog.index(page-1)">前のページ</a></li>
+      }
+      @if(Contents.isLastPage(page)) {
+        <li class="disabled"><a href="#">次のページ</a></li>
+      } else {
+        <li><a href="@routes.Blog.index(page+1)">次のページ</a></li>
+      }
+    </ul>
+  </nav>
 }

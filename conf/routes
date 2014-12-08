@@ -3,8 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                             controllers.Blog.index()
-GET     /youScene                     controllers.Blog.index()
+GET     /youScene                     controllers.Blog.index(page: Integer ?= 1)
+GET     /                             controllers.Blog.index(page: Integer = 1)
 GET     /youScene/content/new         controllers.Blog.create()
 POST    /youScene/content/new         controllers.Blog.accept()
 GET     /youScene/content/:id/edit    controllers.Blog.edit(id: Long)
