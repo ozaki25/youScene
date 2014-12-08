@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import models.Contents;
 import models.Likes;
 import models.Users;
@@ -22,9 +24,10 @@ public class Blog extends Controller {
   public static Result show(Long contentId) {
     Contents content = Contents.find.byId(contentId);
     Users user = YouScene.loginUser();
-    if(!content.liked(user) && !content.author(user)) content.addAccess(user);
+    if(!content.author(user)) content.addAccess(user);
 
-    return ok(show.render(content));
+    List<Contents> latestContents = Contents.findLatestContents(); 
+    return ok(show.render(content,latestContents));
   }
 
   @Authenticated(Authenticate.class)

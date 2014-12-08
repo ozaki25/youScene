@@ -82,6 +82,7 @@ a:focus {
   font-size:200%;
   color:#006633;
   font-weight: bold;
+  margin-top:5px;
 }
 
 .show-date{
@@ -110,6 +111,10 @@ a:focus {
 
 .btn-operation-content{
   margin-bottom:25px;
+}
+
+.latest-content {
+  margin-left:5px;
 }
 
 .btn-youScene {
