@@ -11,8 +11,10 @@
       <div class="row">
         <div class="col-md-6">
           <div class="btn-operation-content">
-            <a class="btn btn-youScene" href="@routes.Blog.edit(content.id)">編集</a>
-            <a class="btn btn-default" href="@routes.Blog.delete(content.id)">削除</a>
+            <a class="btn btn-sm btn-youScene btn-edit" href="@routes.Blog.edit(content.id)">編集</a>
+            @helper.form(action = routes.Blog.delete(content.id)) {
+              <input class="btn btn-sm btn-default" type="submit" value="削除">
+            }
           </div>
         </div>
         <div class="col-md-6 feedback-count">
@@ -20,9 +22,11 @@
             <div>アクセス@content.accesses.size回</div>
             <div>
               @if(content.liked(YouScene.loginUser)) {
-                <a class="btn btn-youScene btn-xs disabled">いいね！</a>
+                <a class="btn btn-xs btn-youScene disabled">いいね！</a>
               } else {
-                <a class="btn btn-youScene btn-xs" href="@routes.Blog.like(content.id)">いいね！</a>
+                @helper.form(action = routes.Blog.like(content.id)) {
+                  <input class="btn btn-xs btn-youScene" type="submit" valie="いいね！">
+                }
               }
               @content.likes.size回
             </div>

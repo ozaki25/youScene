@@ -103,6 +103,11 @@ a:focus {
   text-align:right;
 }
 
+.btn-edit {
+  float:left;
+  margin-right:5px;
+}
+
 .btn-operation-content{
   margin-bottom:25px;
 }
