@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -28,9 +29,9 @@ public class Contents extends Model {
   public Date createdDate;
   @UpdatedTimestamp
   public Date updatedDate;
-  @OneToMany(mappedBy="content")
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="content")
   public List<Accesses> accesses;
-  @OneToMany(mappedBy="content")
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="content")
   public List<Likes> likes;
 
   public static Finder<Long, Contents> find = new Finder(Long.class, Contents.class);
