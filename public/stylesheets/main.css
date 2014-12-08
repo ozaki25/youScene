@@ -1,14 +1,14 @@
 body {
-  background-color:#99cc77;
+  background-color:#c3da9f;
 }
 
 a {
-  color: #339933;
+  color: #336633;
 }
 
 a:hover,
 a:focus {
-  color: #336633;
+  color: #339933;
 }
 
 .navbar-inverse .navbar-brand,
@@ -109,8 +109,8 @@ a:focus {
 
 .btn-youScene {
   color: #ffffff;
-  background-color: #66cc66;
-  border-color: #33cc66;
+  background-color: #91cf3b;
+  border-color: #91cf3b;
 }
 
 .btn-youScene:hover,
@@ -120,5 +120,5 @@ a:focus {
 .open .dropdown-toggle.btn-youScene {
   color: #ffffff;
   background-color: #66cc00;
-  border-color: #33cc00;
+  border-color: #66cc00;
 }
