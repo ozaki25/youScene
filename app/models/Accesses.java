@@ -19,7 +19,7 @@ public class Accesses extends Model {
   @ManyToOne
   public Users user;
   @CreatedTimestamp
-  Date createdDate;
+  public Date createdDate;
 
   public Accesses(Contents content, Users user) {
     this.content = content;

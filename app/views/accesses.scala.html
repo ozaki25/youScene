@@ -1,0 +1,16 @@
+@(content: Contents)
+
+@main(content.title+"にアクセスした人一覧") {
+  <h4>
+    <a href="@routes.Blog.show(content.id)">@content.title</a>
+    <span>にアクセスした人一覧</span>
+  </h4>
+  @for(access <- content.accesses) {
+    <div class="index-content">
+      <div class="row">
+        <span class="col-md-access-date">@access.createdDate.format("yyyy/MM/dd HH:MM")</span>
+        <span class="col-md-name">@(access.user.name)(@access.user.sectionName)</span>
+      </div>
+    </div>
+  }
+}

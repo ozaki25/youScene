@@ -25,7 +25,7 @@ public class Blog extends Controller {
   public static Result show(Long contentId) {
     Contents content = Contents.find.byId(contentId);
     Users user = YouScene.loginUser();
-    if(!content.author(user)) content.addAccess(user);
+    if(!user.isAuthor(content)) content.addAccess(user);
 
     List<Contents> latestContents = Contents.findLatestContents(); 
     return ok(show.render(content,latestContents));

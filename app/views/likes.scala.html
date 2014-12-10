@@ -1,0 +1,16 @@
+@(content: Contents)
+
+@main(content.title+"にいいね！した人一覧") {
+  <h4>
+    <a href="@routes.Blog.show(content.id)">@content.title</a>
+    <span>にいいね！した人一覧</span>
+  </h4>
+  @for(like <- content.likes) {
+    <div class="index-content">
+      <div class="row">
+        <span class="col-md-like-date">@like.createdDate.format("yyyy/MM/dd HH:MM")</span>
+        <span class="col-md-name">@(like.user.name)(@like.user.sectionName)</span>
+      </div>
+    </div>
+  }
+}

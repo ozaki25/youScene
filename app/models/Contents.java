@@ -51,10 +51,6 @@ public class Contents extends Model {
     return count >= 1;
   }
 
-  public boolean author(Users user) {
-    return this.author == user;
-  }
-
   public static List<Contents> findLatestContents() {
     return find.orderBy().desc("createdDate").setMaxRows(5).findList();
   }

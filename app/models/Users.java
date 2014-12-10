@@ -23,4 +23,8 @@ public class Users extends Model {
   public static Users findByUserId(String userId) {
     return find.where().eq("userId", userId).findUnique();
   }
+
+  public boolean isAuthor(Contents content) {
+    return this.equals(content.author);
+  }
 }

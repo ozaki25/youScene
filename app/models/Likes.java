@@ -20,7 +20,7 @@ public class Likes extends Model {
   @ManyToOne
   public Users user;
   @CreatedTimestamp
-  Date createdDate;
+  public Date createdDate;
 
   public static Finder<Long, Likes> find = new Finder(Long.class, Likes.class);
 
