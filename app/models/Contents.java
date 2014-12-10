@@ -60,7 +60,8 @@ public class Contents extends Model {
   }
 
   public static boolean isLastPage(int page) {
-    int lastPage = find.findPagingList(2).getTotalPageCount() + 1;
+    int totalPageCount = find.findPagingList(2).getTotalPageCount();
+    int lastPage = totalPageCount == 0 ? 1 : totalPageCount;
     return page == lastPage;
   }
 }

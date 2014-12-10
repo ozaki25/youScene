@@ -8,14 +8,14 @@
         <div class="show-date">@(content.updatedDate.format("yyyy/MM/dd HH:mm"))</div>
       </div>
       <pre class="show-article">@Html(content.article)</pre>
-      <div class="row">
+      <div class="row show-footer">
         <div class="col-md-9">
-          <div class="btn-operation-content">
+          @if(YouScene.loginUser.isAuthor(content)) {
             <a class="btn btn-sm btn-youScene btn-edit" href="@routes.Blog.edit(content.id)">編集</a>
             @helper.form(action = routes.Blog.delete(content.id)) {
               <input class="btn btn-sm btn-default" type="submit" value="削除" onclick="return window.confirm('削除します。よろしいですか?')">
             }
-          </div>
+          }
         </div>
         <div class="col-md-3 feedback-count">
           <div>

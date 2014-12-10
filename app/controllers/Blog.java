@@ -50,6 +50,8 @@ public class Blog extends Controller {
   @Authenticated(Authenticate.class)
   public static Result edit(Long contentId) {
     Contents content = Contents.find.byId(contentId);
+    if(!YouScene.loginUser().isAuthor(content)) return redirect(routes.Blog.index(1));
+
     return ok(edit.render("記事編集",contentForm.fill(content),content));
   }
 
@@ -66,6 +68,8 @@ public class Blog extends Controller {
 
   public static Result delete(Long contentId) {
     Contents content = Contents.find.byId(contentId);
+    if(!YouScene.loginUser().isAuthor(content)) return redirect(routes.Blog.index(1));
+
     content.delete();
 
     return redirect(routes.Blog.index(1));
