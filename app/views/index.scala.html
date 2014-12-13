@@ -1,7 +1,7 @@
-@(title: String)(contents: List[Contents])(page: Integer)
+@(title: String)(page: Integer)
 
 @main(title) {
-  @for(content <- contents) {
+  @for(content <- Contents.findPagingList(page)) {
     <div class="index-content">
       <div class="index-title"><a href="@routes.Blog.show(content.id)">@content.title</a></div>
       <div class="row">

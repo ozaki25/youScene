@@ -17,18 +17,16 @@ public class Blog extends Controller {
 
   @Authenticated(Authenticate.class)
   public static Result index(int page) {
-    List<Contents> contents = Contents.findPagingList(page);
-    return ok(index.render("記事一覧", contents, page));
+    return ok(index.render("記事一覧", page));
   }
 
   @Authenticated(Authenticate.class)
   public static Result show(Long contentId) {
     Contents content = Contents.find.byId(contentId);
     Users user = YouScene.loginUser();
-    if(!user.isAuthor(content)) content.addAccess(user);
+    if(!user.isAuthor(content)) user.addAccess(content);
 
-    List<Contents> latestContents = Contents.findLatestContents(); 
-    return ok(show.render(content,latestContents));
+    return ok(show.render(content));
   }
 
   @Authenticated(Authenticate.class)
@@ -44,7 +42,7 @@ public class Blog extends Controller {
     content.author = YouScene.loginUser();
     content.save();
 
-    return redirect(routes.Blog.index(1));
+    return redirect(routes.Blog.show(content.id));
   }
 
   @Authenticated(Authenticate.class)
@@ -63,7 +61,7 @@ public class Blog extends Controller {
     content = form.get();
     content.update(contentId);
 
-    return redirect(routes.Blog.index(1));
+    return redirect(routes.Blog.show(content.id));
   }
 
   public static Result delete(Long contentId) {
@@ -73,13 +71,5 @@ public class Blog extends Controller {
     content.delete();
 
     return redirect(routes.Blog.index(1));
-  }
-
-  public static Result like(Long contentId) {
-    Contents content = Contents.find.byId(contentId);
-    Users user = YouScene.loginUser();
-    content.addLike(user);
-
-    return redirect(routes.Blog.show(contentId));
   }
 }

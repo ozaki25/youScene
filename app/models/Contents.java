@@ -36,31 +36,16 @@ public class Contents extends Model {
 
   public static Finder<Long, Contents> find = new Finder(Long.class, Contents.class);
 
-  public void addAccess(Users user) {
-    Accesses access =new Accesses(this,user);
-    access.save();
-  }
-
-  public void addLike(Users user) {
-    Likes like = new Likes(this,user);
-    like.save();
-  }
-
-  public boolean liked(Users user) {
-    int count = Likes.find.where().eq("content", this).eq("user", user).findRowCount();
-    return count >= 1;
-  }
-
   public static List<Contents> findLatestContents() {
-    return find.orderBy().desc("createdDate").setMaxRows(5).findList();
+    return find.orderBy().desc("updatedDate").setMaxRows(5).findList();
   }
 
   public static List<Contents> findPagingList(int page) {
-    return find.findPagingList(2).getPage(page-1).getList();
+    return find.orderBy().desc("updatedDate").findPagingList(5).getPage(page-1).getList();
   }
 
   public static boolean isLastPage(int page) {
-    int totalPageCount = find.findPagingList(2).getTotalPageCount();
+    int totalPageCount = find.findPagingList(5).getTotalPageCount();
     int lastPage = totalPageCount == 0 ? 1 : totalPageCount;
     return page == lastPage;
   }

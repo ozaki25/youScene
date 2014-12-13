@@ -1,41 +1,39 @@
-@(content: Contents)(latestContents: List[Contents])
+@(content: Contents)
 
 @main(content.title) {
   <div class="row">
     <div class="col-md-9 show-content">
-      <div class="show-content-header">
+      <div class="show-header">
         <div class="show-title">@content.title</div>
-        <div class="show-date">@(content.updatedDate.format("yyyy/MM/dd HH:mm"))</div>
+        <div class="show-date">@(content.updatedDate.format("yyyy年M月d日 HH時M分"))</div>
       </div>
       <pre class="show-article">@Html(content.article)</pre>
       <div class="show-footer">
-        <div class="operate-content-btn">
-          @if(YouScene.loginUser.isAuthor(content)) {
+        @if(YouScene.loginUser.isAuthor(content)) {
+          <div class="operate-content-btn">
             <a class="btn btn-sm btn-youScene" href="@routes.Blog.edit(content.id)">編集</a>
             @helper.form(action = routes.Blog.delete(content.id), 'class -> "delete-content") {
               <input class="btn btn-sm btn-default" type="submit" value="削除" onclick="return window.confirm('削除します。よろしいですか?')">
             }
-          }
-        </div>
+          </div>
+        }
         <div class="feedback-count">
           @if(YouScene.loginUser.isAuthor(content)) {
-            アクセス <a href="@routes.AccessesController.accesses(content.id)">@content.accesses.size</a>回
+            <span>アクセス <a href="@routes.AccessesController.accesses(content.id)">@content.accesses.size</a>回</span>
           } else {
-            アクセス @content.accesses.size回
+            <span>アクセス @content.accesses.size回</span>
           }
           <div>
-            @if(content.liked(YouScene.loginUser)) {
+            @if(YouScene.loginUser.liked(content)) {
               <a class="btn btn-xs btn-youScene disabled">いいね！</a>
             } else {
-              @helper.form(action = routes.Blog.like(content.id), 'class -> "add-like") {
-                <input class="btn btn-xs btn-youScene" type="submit" value="いいね！">
-              }
+              <a class="btn btn-xs btn-youScene btn-like" url="@routes.LikesController.like(content.id)">いいね！</a>
             }
-          @if(YouScene.loginUser.isAuthor(content)) {
-            <a href="@routes.LikesController.likes(content.id)">@content.likes.size</a>回
-          } else {
-            @content.likes.size回
-          }
+            @if(YouScene.loginUser.isAuthor(content)) {
+              <span class="like-count"><a href="@routes.LikesController.likes(content.id)">@content.likes.size</a></span>回
+            } else {
+              <span class="like-count">@content.likes.size</span>回
+            }
           </div>
         </div>
       </div>
@@ -44,7 +42,7 @@
       <div class="show-author">@(content.author.name)(@content.author.sectionName)</div>
       <div class="latest-contents">
         <h3>最新の記事</h3>
-        @for(content <- latestContents) {
+        @for(content <- Contents.findLatestContents()) {
           <div class="latest-content">
             <a href="@routes.Blog.show(content.id)">@content.title</a>
           </div>

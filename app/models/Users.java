@@ -27,4 +27,19 @@ public class Users extends Model {
   public boolean isAuthor(Contents content) {
     return this.equals(content.author);
   }
+
+  public boolean liked(Contents content) {
+    int count = Likes.find.where().eq("content", content).eq("user", this).findRowCount();
+    return count >= 1;
+  }
+
+  public void addAccess(Contents content) {
+    Accesses access =new Accesses(content, this);
+    access.save();
+  }
+
+  public void addLike(Contents content) {
+    Likes like = new Likes(content, this);
+    like.save();
+  }
 }

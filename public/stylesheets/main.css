@@ -34,8 +34,14 @@ a:focus {
   }
 }
 
-.index-content{
+.index-content {
   border-bottom:solid 1px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.index-feedback {
+  border-bottom:dashed 1px;
   margin-top:5px;
   margin-bottom:5px;
 }
@@ -63,7 +69,7 @@ a:focus {
 
 .col-md-access-date,
 .col-md-like-date {
-  width:130px;
+  width:190px;
 }
 
 .from-group {
@@ -81,7 +87,7 @@ a:focus {
   border-right:solid 1px;
 }
 
-.show-content-header {
+.show-header {
   border-bottom:solid 1px;
 }
 
@@ -117,10 +123,6 @@ a:focus {
 
 .delete-content {
   margin-left:5px;
-  display:inline
-}
-
-.add-like {
   display:inline
 }
 
