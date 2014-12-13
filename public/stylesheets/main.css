@@ -107,13 +107,21 @@ a:focus {
   margin-top:10px;
 }
 
+.operate-content-btn {
+  float:left;
+}
+
 .feedback-count {
   text-align:right;
 }
 
-.btn-edit {
-  float:left;
-  margin-right:5px;
+.delete-content {
+  margin-left:5px;
+  display:inline
+}
+
+.add-like {
+  display:inline
 }
 
 .show-footer {

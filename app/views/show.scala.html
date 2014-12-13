@@ -8,29 +8,34 @@
         <div class="show-date">@(content.updatedDate.format("yyyy/MM/dd HH:mm"))</div>
       </div>
       <pre class="show-article">@Html(content.article)</pre>
-      <div class="row show-footer">
-        <div class="col-md-9">
+      <div class="show-footer">
+        <div class="operate-content-btn">
           @if(YouScene.loginUser.isAuthor(content)) {
-            <a class="btn btn-sm btn-youScene btn-edit" href="@routes.Blog.edit(content.id)">編集</a>
-            @helper.form(action = routes.Blog.delete(content.id)) {
+            <a class="btn btn-sm btn-youScene" href="@routes.Blog.edit(content.id)">編集</a>
+            @helper.form(action = routes.Blog.delete(content.id), 'class -> "delete-content") {
               <input class="btn btn-sm btn-default" type="submit" value="削除" onclick="return window.confirm('削除します。よろしいですか?')">
             }
           }
         </div>
-        <div class="col-md-3 feedback-count">
+        <div class="feedback-count">
+          @if(YouScene.loginUser.isAuthor(content)) {
+            アクセス <a href="@routes.AccessesController.accesses(content.id)">@content.accesses.size</a>回
+          } else {
+            アクセス @content.accesses.size回
+          }
           <div>
-            <div>アクセス @content.accesses.size回</div>
-            <div>
-              @if(content.liked(YouScene.loginUser)) {
-                <a class="btn btn-xs btn-youScene disabled">いいね！</a>
-                <span>@content.likes.size回</span>
-              } else {
-                @helper.form(action = routes.Blog.like(content.id)) {
-                  <input class="btn btn-xs btn-youScene" type="submit" value="いいね！">
-                   <span>@content.likes.size回</span>
-                }
+            @if(content.liked(YouScene.loginUser)) {
+              <a class="btn btn-xs btn-youScene disabled">いいね！</a>
+            } else {
+              @helper.form(action = routes.Blog.like(content.id), 'class -> "add-like") {
+                <input class="btn btn-xs btn-youScene" type="submit" value="いいね！">
               }
-            </div>
+            }
+          @if(YouScene.loginUser.isAuthor(content)) {
+            <a href="@routes.LikesController.likes(content.id)">@content.likes.size</a>回
+          } else {
+            @content.likes.size回
+          }
           </div>
         </div>
       </div>
