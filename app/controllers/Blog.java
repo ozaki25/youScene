@@ -43,7 +43,7 @@ public class Blog extends Controller {
 
     Contents content = form.get();
     content.author = YouScene.loginUser();
-    content.tags = Tags.findByTags(form.get().tags);
+    content.tags = Tags.findByTagNames(content.tagNames);
     content.save();
     content.saveManyToManyAssociations("tags");
 

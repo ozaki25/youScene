@@ -37,6 +37,7 @@ public class Contents extends Model {
     public List<Likes> likes;
     @ManyToMany(cascade=CascadeType.REMOVE, mappedBy="contents")
     public List<Tags> tags = new ArrayList<Tags>();
+    public List<String> tagNames = new ArrayList<String>();
     public static Finder<Long, Contents> find = new Finder(Long.class, Contents.class);
     final static int perPageContents = 5;
 

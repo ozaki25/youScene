@@ -49,12 +49,7 @@ public class Tags extends Model {
 	return find.where().eq("tagName",tagName).findUnique();
     }
 
-    public static List<Tags> findByTags(List<Tags> selectedTags) {
-	System.out.println("tag_sizw : "+selectedTags.size());
-	List<Tags> tags = new ArrayList<Tags>();
-	for(Tags tag : selectedTags) {
-	    if(!tag.tagName.isEmpty()) tags.add(findByTagName(tag.tagName));
-	}
-	return tags;
+    public static List<Tags> findByTagNames(List<String> tagNames) {
+	return find.where().in("tagName",tagNames).findList();
     }
 }
