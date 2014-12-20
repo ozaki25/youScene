@@ -5,10 +5,10 @@ $(function() {
       type: "POST"
     }).done(function() {
       $('a.btn-like').addClass("disabled");
-      var like_count = $('span.like-count').text();
+      var like_count = $('.like-count').text();
       like_count = parseInt(like_count);
       like_count += 1;
-      $('span.like-count').text(like_count);
+	$('.like-count').text(like_count);
     });
   });
   $('a.btn-create-tag').click(function() {

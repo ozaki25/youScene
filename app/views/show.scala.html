@@ -27,10 +27,10 @@
             @if(YouScene.loginUser.liked(content)) {
               <a class="btn btn-xs btn-youScene disabled">いいね！</a>
             } else {
-              <a class="btn btn-xs btn-youScene btn-like" url="@routes.LikesController.like(content.id)">いいね！</a>
+              <a class="btn btn-xs btn-youScene btn-like" content="@content.id" url="@routes.LikesController.like(content.id)">いいね！</a>
             }
             @if(YouScene.loginUser.isAuthor(content)) {
-              <span class="like-count"><a href="@routes.LikesController.likes(content.id)">@content.likes.size</a></span>回
+              <a href="@routes.LikesController.likes(content.id)" class="like-count">@content.likes.size</a>回
             } else {
               <span class="like-count">@content.likes.size</span>回
             }

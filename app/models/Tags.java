@@ -50,9 +50,10 @@ public class Tags extends Model {
     }
 
     public static List<Tags> findByTags(List<Tags> selectedTags) {
+	System.out.println("tag_sizw : "+selectedTags.size());
 	List<Tags> tags = new ArrayList<Tags>();
 	for(Tags tag : selectedTags) {
-	    tags.add(findByTagName(tag.tagName));
+	    if(!tag.tagName.isEmpty()) tags.add(findByTagName(tag.tagName));
 	}
 	return tags;
     }
