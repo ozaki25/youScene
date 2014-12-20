@@ -11,4 +11,16 @@ $(function() {
       $('span.like-count').text(like_count);
     });
   });
+  $('a.btn-create-tag').click(function() {
+    $.ajax({
+      url: $(this).attr("url"),
+      type: "POST",
+      data: {tagName: $('input#tagName').val()}
+    }).done(function() {
+	alert("success!");
+	$('#newTagModal').modal("hide");
+    }).fail(function() {
+	alert("failed!");
+    });
+  });
 });

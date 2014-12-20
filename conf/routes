@@ -3,24 +3,26 @@
 # ~~~~
 
 # Home page
-GET     /youScene                       controllers.Blog.index(page: Integer ?= 1)
-GET     /                               controllers.Blog.index(page: Integer = 1)
-GET     /youScene/content/new           controllers.Blog.create()
-POST    /youScene/content/new           controllers.Blog.accept()
-GET     /youScene/content/:id/edit      controllers.Blog.edit(id: Long)
-POST    /youScene/content/:id/edit      controllers.Blog.update(id: Long)
-POST    /youScene/content/:id/delete    controllers.Blog.delete(id: Long)
-GET     /youScene/content/:id           controllers.Blog.show(id: Long)
+GET     /youScene/contents               controllers.Blog.index(page: Integer ?= 1)
+GET     /youScene                        controllers.Blog.index(page: Integer ?= 1)
+GET     /                                controllers.Blog.index(page: Integer = 1)
+GET     /youScene/contents/new           controllers.Blog.create()
+POST    /youScene/contents/new           controllers.Blog.accept()
+GET     /youScene/contents/:id/edit      controllers.Blog.edit(id: Long)
+POST    /youScene/contents/:id/edit      controllers.Blog.update(id: Long)
+POST    /youScene/contents/:id/delete    controllers.Blog.delete(id: Long)
+GET     /youScene/contents/:id           controllers.Blog.show(id: Long)
 
-POST    /youScene/content/:id/like      controllers.LikesController.like(id: Long)
-GET     /youScene/content/:id/likes     controllers.LikesController.likes(id: Long)
-GET     /youScene/content/:id/accesses  controllers.AccessesController.accesses(id: Long)
+POST    /youScene/contents/:id/like      controllers.LikesController.like(id: Long)
+GET     /youScene/contents/:id/likes     controllers.LikesController.likes(id: Long)
+GET     /youScene/contents/:id/accesses  controllers.AccessesController.accesses(id: Long)
+POST    /youScene/tags/new               controllers.TagsController.create()
 
-GET     /youScene/signup                controllers.YouScene.entry()
-POST    /youScene/signup                controllers.YouScene.signup()
-GET     /youScene/login                 controllers.YouScene.login()
-POST    /youScene/login                 controllers.YouScene.authenticate()
-GET     /youScene/logout                controllers.YouScene.logout()
+GET     /youScene/signup                 controllers.YouScene.entry()
+POST    /youScene/signup                 controllers.YouScene.signup()
+GET     /youScene/login                  controllers.YouScene.login()
+POST    /youScene/login                  controllers.YouScene.authenticate()
+GET     /youScene/logout                 controllers.YouScene.logout()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                   controllers.Assets.at(path="/public", file)

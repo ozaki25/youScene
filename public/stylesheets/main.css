@@ -153,3 +153,8 @@ a:focus {
   background-color: #66cc00;
   border-color: #66cc00;
 }
+
+.modal-dialog {
+  width: 400px;
+  margin-top:10%;
+}

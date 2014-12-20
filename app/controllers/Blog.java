@@ -1,10 +1,12 @@
 package controllers;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import models.Contents;
 import models.Likes;
 import models.Users;
+import models.Tags;
 import play.*;
 import static play.data.Form.*;
 import play.data.Form;
@@ -14,6 +16,7 @@ import views.html.*;
 
 public class Blog extends Controller {
   final static Form<Contents> contentForm = form(Contents.class);
+  final static Form<Tags> tagForm = form(Tags.class);
 
   @Authenticated(Authenticate.class)
   public static Result index(int page) {
@@ -31,16 +34,18 @@ public class Blog extends Controller {
 
   @Authenticated(Authenticate.class)
   public static Result create() {
-    return ok(create.render("新規作成",contentForm));
+      return ok(create.render("新規作成",contentForm,tagForm));
   }
 
   public static Result accept() {
     Form<Contents> form = contentForm.bindFromRequest();
-    if(form.hasErrors()) return badRequest(create.render("新規作成",form));
+    if(form.hasErrors()) return badRequest(create.render("新規作成",form,tagForm));
 
     Contents content = form.get();
     content.author = YouScene.loginUser();
+    content.tags = Tags.findByTags(form.get().tags);
     content.save();
+    content.saveManyToManyAssociations("tags");
 
     return redirect(routes.Blog.show(content.id));
   }
@@ -55,9 +60,9 @@ public class Blog extends Controller {
 
   public static Result update(Long contentId) {
     Form<Contents> form = contentForm.bindFromRequest();
-    if(form.hasErrors()) return badRequest(create.render("記事編集",form));
-
     Contents content = Contents.find.byId(contentId);
+    if(form.hasErrors()) return badRequest(edit.render("記事編集",form,content));
+
     content = form.get();
     content.update(contentId);
 

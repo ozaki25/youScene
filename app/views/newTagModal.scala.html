@@ -1,0 +1,20 @@
+@(tagForm: Form[Tags])
+
+<div class="modal fade" id="newTagModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        @helper.inputText(
+          tagForm("tagName"),
+          '_label -> "新しいタグ",
+          'class -> "form-control",
+          '_help -> ""
+        )
+      </div>
+      <div class="modal-footer">
+	<a class="btn btn-default" data-dismiss="modal">閉じる</a>
+	<a class="btn btn-youScene btn-create-tag" url="@routes.TagsController.create">作成</a>
+      </div>
+    </div>
+  </div>
+</div>
