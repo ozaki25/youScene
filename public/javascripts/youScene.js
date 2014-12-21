@@ -24,9 +24,9 @@ $(function() {
 	    });
 	    if(!isSelected) {
 		$('span.selected-tag').prepend(
-		    '<input name="tagNames[]" type="hidden" value="' + tagName +
-		    '"><span id="' + tagName + '"class="selected-tag-name">' +
-		    tagName + '</span>'
+		    '<input id="' + tagName + '" name="tagNames[]" type="hidden" value="' + tagName +
+		    '"><span id="' + tagName + '" class="selected-tag-name">' + tagName +
+		    '</span><a id="' + tagName + '" class="delete-tag" href="#">x</a>'
 		);
 		$('select[name=tag] option').each(function() {
 		    if($(this).val() == tagName) this.remove();
@@ -39,11 +39,18 @@ $(function() {
 	var selected = $('select[name="tag"] option:selected');
 	var tagName = selected.val();
 	$('span.selected-tag').prepend(
-	    '<input name="tagNames[]" type="hidden" value="' + tagName +
-	    '"><span id="' + tagName + '"class="selected-tag-name">' +
-	    tagName + '</span>'
+	    '<input id="' + tagName + '" name="tagNames[]" type="hidden" value="' + tagName +
+	    '"><span id="' + tagName + '"class="selected-tag-name">' + tagName +
+	    '</span><a id="' + tagName + '" class="delete-tag" href="#">x</a>'
 	);
 	selected.remove();
+    });
+    $('div.label-tag').on('click','a.delete-tag',function() {
+	var tagName = $(this).attr("id");
+	$('option.blank').after(
+	    '<option value="' + tagName + '">' + tagName + '</option>'
+	);
+	$('div.label-tag [id="' + tagName + '"]').remove();
     });
     $('input[name="tagNames[]"]').each(function() {
 	$('option[value="' + $(this).val() + '"').remove();

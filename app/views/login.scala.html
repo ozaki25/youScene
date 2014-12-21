@@ -1,7 +1,7 @@
 @(title: String)(form: Form[Login])
 
 @main(title) {
-  @helper.form(routes.YouScene.authenticate, 'class -> "from-group") {
+  @helper.form(routes.YouScene.authenticate, 'class -> "form-group") {
     @helper.inputText(
       form("userId"),
       '_label -> "ユーザID",
