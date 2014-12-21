@@ -1,27 +1,8 @@
-@(title: String)(form: Form[Contents])(tagForm: Form[Tags])
+@(title: String)(contentForm: Form[Contents])(tagForm: Form[Tags])
 
 @main(title) {
   @helper.form(action = routes.Blog.accept, 'class -> "form-group") {
-    @helper.inputText(
-      form("title"),
-      '_label -> "タイトル",
-      'class -> "form-control",
-      '_help -> ""
-    )
-    @helper.textarea(
-      form("article"),
-      '_label -> "本文",
-      'class -> "form-control",
-      '_help -> "",
-      'rows -> "15"
-    )
-    @helper.select(
-      form("tag"),
-      options = helper.options(Tags.list),
-      '_default -> "--- Choose a tag ---",
-      '_label -> "タグ",
-      'class -> "form-control"
-    )
+    @inputForm(contentForm)
     <a href="#" data-toggle="modal" data-target="#newTagModal">＋新しいタグ</a>
     @newTagModal(tagForm)
     <div class="btn-create">

@@ -1,0 +1,22 @@
+@(contentForm: Form[Contents])
+
+@helper.inputText(
+  contentForm("title"),
+  'class -> "form-control",
+  '_label -> "タイトル",
+  '_help -> ""
+)
+@helper.textarea(
+  contentForm("article"),
+  'class -> "form-control",
+  '_label -> "本文",
+  '_help -> "",
+  'rows -> "15"
+)
+@helper.select(
+  contentForm("tag"),
+  options = helper.options(Tags.list),
+  'class -> "form-control",
+  '_label -> "タグ",
+  '_default -> "--- Choose a tag ---"
+)

@@ -55,13 +55,13 @@ public class Blog extends Controller {
     Contents content = Contents.find.byId(contentId);
     if(!YouScene.loginUser().isAuthor(content)) return redirect(routes.Blog.index(1));
 
-    return ok(edit.render("記事編集",contentForm.fill(content),content));
+    return ok(edit.render("記事編集",content,contentForm.fill(content),tagForm));
   }
 
   public static Result update(Long contentId) {
     Form<Contents> form = contentForm.bindFromRequest();
     Contents content = Contents.find.byId(contentId);
-    if(form.hasErrors()) return badRequest(edit.render("記事編集",form,content));
+    if(form.hasErrors()) return badRequest(edit.render("記事編集",content,form,tagForm));
 
     content = form.get();
     content.update(contentId);
