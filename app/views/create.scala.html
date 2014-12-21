@@ -2,7 +2,7 @@
 
 @main(title) {
   @helper.form(action = routes.Blog.accept, 'class -> "form-group") {
-    @inputForm(contentForm)
+    @inputForm(contentForm)(new Contents)
     <div class="new-tag-link">
       <a href="#" data-toggle="modal" data-target="#newTagModal">＋新しいタグ</a>
     </div>

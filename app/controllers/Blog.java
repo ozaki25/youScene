@@ -64,7 +64,9 @@ public class Blog extends Controller {
     if(form.hasErrors()) return badRequest(edit.render("記事編集",content,form,tagForm));
 
     content = form.get();
+    content.tags = Tags.findByTagNames(content.tagNames);
     content.update(contentId);
+    content.saveManyToManyAssociations("tags");
 
     return redirect(routes.Blog.show(content.id));
   }
@@ -74,6 +76,7 @@ public class Blog extends Controller {
     if(!YouScene.loginUser().isAuthor(content)) return redirect(routes.Blog.index(1));
 
     content.delete();
+    content.deleteManyToManyAssociations("tags");
 
     return redirect(routes.Blog.index(1));
   }

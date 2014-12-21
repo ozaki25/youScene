@@ -1,4 +1,4 @@
-@(contentForm: Form[Contents])
+@(contentForm: Form[Contents])(content: Contents)
 
 <div class="label-title">
   <label>
@@ -26,7 +26,12 @@
 <div class="label-tag">
   <label>
     <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>タグ
-    <span class="selected-tag"></span>
+    <span class="selected-tag">
+      @for(tag <- content.tags) {
+        <input name="tagNames[]" type="hidden" value="@tag.tagName">
+        <span id="@tag.tagName" class="selected-tag-name">@tag.tagName</span>
+      }
+    </span>
   </label>
 </div>
 @helper.select(

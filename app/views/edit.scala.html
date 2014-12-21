@@ -1,8 +1,8 @@
 @(title: String)(content: Contents)(contentForm: Form[Contents])(tagForm: Form[Tags])
 
 @main(title) {
-  @helper.form(action = routes.Blog.update(content.id), 'class -> "from-group") {
-    @inputForm(contentForm)
+  @helper.form(action = routes.Blog.update(content.id), 'class -> "form-group") {
+@inputForm(contentForm)(content)
     <div class="new-tag-link">
       <a href="#" data-toggle="modal" data-target="#newTagModal">＋新しいタグ</a>
     </div>
