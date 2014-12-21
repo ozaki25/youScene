@@ -12,15 +12,27 @@ $(function() {
 	});
     });
     $('a.btn-create-tag').click(function() {
+	var tagName = $('input#tagName').val();
 	$.ajax({
 	    url: $(this).attr("url"),
 	    type: "POST",
-	    data: {tagName: $('input#tagName').val()}
+	    data: {tagName: tagName}
 	}).done(function() {
-	    alert("success!");
+	    var isSelected = false;
+	    $('input[name="tagNames[]"]').each(function() {
+		if($(this).val() == tagName) isSelected = true;
+	    });
+	    if(!isSelected) {
+		$('label[for="tag"]').after(
+		    '<input name="tagNames[]" type="hidden" value="' + tagName +
+		    '"><span id="' + tagName + '"class="selected-tag-name">' +
+		    tagName + '</span>'
+		);
+		$('select[name=tag] option').each(function() {
+		    if($(this).val() == tagName) this.remove();
+		});
+	    }
 	    $('#newTagModal').modal("hide");
-	}).fail(function() {
-	    alert("failed!");
 	});
     });
     $('select#tag').change(function() {
@@ -28,7 +40,8 @@ $(function() {
 	var tagName = selected.val();
 	$('label[for="tag"]').after(
 	    '<input name="tagNames[]" type="hidden" value="' + tagName +
-	    '"><span id="' + tagName + '"class="selected-tag-name">' + tagName + '</span>'
+	    '"><span id="' + tagName + '"class="selected-tag-name">' +
+	    tagName + '</span>'
 	);
 	selected.remove();
     });

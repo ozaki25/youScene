@@ -52,6 +52,7 @@ a:focus {
 
 .col-md-date,
 .col-md-name,
+.col-md-tag,
 .col-md-access-date,
 .col-md-like-date {
   min-height: 1px;
@@ -63,7 +64,8 @@ a:focus {
   width:90px;
 }
 
-.col-md-name {
+.col-md-name,
+.col-md-tag {
   width:auto;
 }
 
@@ -91,15 +93,20 @@ a:focus {
   border-bottom:solid 1px;
 }
 
-.show-title{
+.show-title {
   font-size:200%;
   color:#006633;
   font-weight: bold;
   margin-top:5px;
 }
 
-.show-date{
+.show-tag {
+  text-align:left;
+}
+
+.show-date {
   text-align:right;
+  float:right;
 }
 
 .show-article {

@@ -5,7 +5,10 @@
     <div class="col-md-9 show-content">
       <div class="show-header">
         <div class="show-title">@content.title</div>
-        <div class="show-date">@(content.updatedDate.format("yyyy年M月d日 HH時M分"))</div>
+	@for(tag <- content.tags) {
+	  <span class="show-tag">@tag.tagName</span>
+	}
+        <soan class="show-date">@(content.updatedDate.format("yyyy年M月d日 HH時M分"))</span>
       </div>
       <pre class="show-article">@Html(content.article)</pre>
       <div class="show-footer">
