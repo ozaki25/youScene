@@ -74,10 +74,21 @@ a:focus {
   width:190px;
 }
 
-.from-group {
+.form-group {
   margin-right:25px;
   margin-left:25px;
   margin-bottom:25px;
+}
+
+.label-title,
+.label-article,
+.label-tag {
+  margin-top:10px;
+  margin-bottom:-35px;
+}
+
+.new-tag-link {
+  margin-top:-20px;
 }
 
 .btn-create,

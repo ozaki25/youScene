@@ -23,7 +23,7 @@ $(function() {
 		if($(this).val() == tagName) isSelected = true;
 	    });
 	    if(!isSelected) {
-		$('label[for="tag"]').after(
+		$('span.selected-tag').prepend(
 		    '<input name="tagNames[]" type="hidden" value="' + tagName +
 		    '"><span id="' + tagName + '"class="selected-tag-name">' +
 		    tagName + '</span>'
@@ -38,7 +38,7 @@ $(function() {
     $('select#tag').change(function() {
 	var selected = $('select[name="tag"] option:selected');
 	var tagName = selected.val();
-	$('label[for="tag"]').after(
+	$('span.selected-tag').prepend(
 	    '<input name="tagNames[]" type="hidden" value="' + tagName +
 	    '"><span id="' + tagName + '"class="selected-tag-name">' +
 	    tagName + '</span>'
