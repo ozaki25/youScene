@@ -45,4 +45,7 @@ $(function() {
 	);
 	selected.remove();
     });
+    $('input[name="tagNames[]"]').each(function() {
+	$('option[value="' + $(this).val() + '"').remove();
+    });
 });
