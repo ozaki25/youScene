@@ -35,7 +35,7 @@ public class Tags extends Model {
     }
 
     public static List<String> list() {
-	List<Tags> tags = Tags.find.all();
+	List<Tags> tags = Tags.find.orderBy("tagName").findList();
 	List<String> tagNames = new ArrayList<String>();
 
 	for(Tags tag : tags) {
