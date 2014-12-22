@@ -25,8 +25,8 @@ $(function() {
 	    if(!isSelected) {
 		$('span.selected-tag').prepend(
 		    '<input id="' + tagName + '" name="tagNames[]" type="hidden" value="' + tagName +
-		    '"><span id="' + tagName + '" class="selected-tag-name">' + tagName +
-		    '</span><a id="' + tagName + '" class="delete-tag" href="#">x</a>'
+		    '"><span id="' + tagName + '" class="selected-tag-name tag">' + tagName +
+		    '<a id="' + tagName + '" class="delete-tag" href="#">x</a></span>'
 		);
 		$('select[name=tag] option').each(function() {
 		    if($(this).val() == tagName) this.remove();
@@ -40,8 +40,8 @@ $(function() {
 	var tagName = selected.val();
 	$('span.selected-tag').prepend(
 	    '<input id="' + tagName + '" name="tagNames[]" type="hidden" value="' + tagName +
-	    '"><span id="' + tagName + '"class="selected-tag-name">' + tagName +
-	    '</span><a id="' + tagName + '" class="delete-tag" href="#">x</a>'
+	    '"><span id="' + tagName + '"class="selected-tag-name tag">' + tagName +
+	    '<a id="' + tagName + '" class="delete-tag" href="#">x</a></span>'
 	);
 	selected.remove();
     });

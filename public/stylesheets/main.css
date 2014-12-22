@@ -91,6 +91,16 @@ a:focus {
   margin-top:-20px;
 }
 
+.delete-tag {
+  font-size:100%;
+}
+
+.tag {
+  margin-right:2px;
+  padding:1px;
+  background-color:#ebf0e6;
+}
+
 .btn-create,
 .btn-update {
   text-align:center;

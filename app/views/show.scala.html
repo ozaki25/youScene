@@ -6,7 +6,7 @@
       <div class="show-header">
         <div class="show-title">@content.title</div>
 	@for(tag <- content.tags) {
-	  <span class="show-tag">@tag.tagName</span>
+	  <span class="show-tag tag">@tag.tagName</span>
 	}
         <soan class="show-date">@(content.updatedDate.format("yyyy年M月d日 HH時M分"))</span>
       </div>

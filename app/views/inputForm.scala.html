@@ -29,9 +29,11 @@
     <span class="selected-tag">
       @for(tag <- content.tags) {
         <input id="@tag.tagName" name="tagNames[]" type="hidden" value="@tag.tagName">
-        <span id="@tag.tagName" class="selected-tag-name">@tag.tagName</span>
-        <a id="@tag.tagName" class="delete-tag" href="#">x</a>
-	}
+        <span id="@tag.tagName" class="selected-tag-name tag">
+	  @tag.tagName
+          <a id="@tag.tagName" class="delete-tag" href="#">x</a>
+	</span>
+      }
     </span>
   </label>
 </div>

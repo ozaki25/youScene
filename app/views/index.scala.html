@@ -8,7 +8,7 @@
         <span class="col-md-date">@content.updatedDate.format("yyyy/MM/dd")</span>
         <span class="col-md-name">@content.author.name</span>
 	@for(tag <- content.tags) {
-          <span class="col-md-tag">@tag.tagName</span>
+          <span class="col-md-tag tag">@tag.tagName</span>
         }
       </div>
     </div>
