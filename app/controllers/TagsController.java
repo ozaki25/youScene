@@ -18,4 +18,9 @@ public class TagsController extends Controller {
 	tag.save();
 	return ok();
     }
+
+    public static Result tagsContents(Long tagId) {
+	Tags tag = Tags.find.byId(tagId);
+	return ok(tagsContents.render(tag));
+    }
 }

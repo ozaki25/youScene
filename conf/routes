@@ -17,6 +17,7 @@ POST    /youScene/contents/:id/like      controllers.LikesController.like(id: Lo
 GET     /youScene/contents/:id/likes     controllers.LikesController.likes(id: Long)
 GET     /youScene/contents/:id/accesses  controllers.AccessesController.accesses(id: Long)
 POST    /youScene/tags/new               controllers.TagsController.create()
+GET     /youScene/tags/:id               controllers.TagsController.tagsContents(id: Long)
 
 GET     /youScene/signup                 controllers.YouScene.entry()
 POST    /youScene/signup                 controllers.YouScene.signup()

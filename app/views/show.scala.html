@@ -6,7 +6,7 @@
       <div class="show-header">
         <div class="show-title">@content.title</div>
 	@for(tag <- content.tags) {
-	  <span class="show-tag tag">@tag.tagName</span>
+	  <a href="@routes.TagsController.tagsContents(tag.id)" class="show-tag tag">@tag.tagName</a>
 	}
         <soan class="show-date">@(content.updatedDate.format("yyyy年M月d日 HH時M分"))</span>
       </div>

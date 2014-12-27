@@ -4,11 +4,11 @@
   @for(content <- Contents.findPagingList(page)) {
     <div class="index-content">
       <div class="index-title"><a href="@routes.Blog.show(content.id)">@content.title</a></div>
-      <div class="row">
+      <div class="index-content-info row">
         <span class="col-md-date">@content.updatedDate.format("yyyy/MM/dd")</span>
         <span class="col-md-name">@content.author.name</span>
 	@for(tag <- content.tags) {
-          <span class="col-md-tag tag">@tag.tagName</span>
+          <a href="@routes.TagsController.tagsContents(tag.id)" class="col-md-tag tag">@tag.tagName</a>
         }
       </div>
     </div>
