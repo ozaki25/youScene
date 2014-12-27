@@ -177,6 +177,11 @@ a:focus {
   margin-bottom:10px;
 }
 
+.content-index-link {
+  text-align:right;
+  margin-right:10px;
+}
+
 .btn-youScene {
   color: #ffffff;
   background-color: #91cf3b;
