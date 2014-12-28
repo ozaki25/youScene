@@ -1,30 +1,46 @@
 @(title: String)(page: Integer)
 
 @main(title) {
-  @for(content <- Contents.findPagingList(page)) {
-    <div class="index-content">
-      <div class="index-title"><a href="@routes.Blog.show(content.id)">@content.title</a></div>
-      <div class="index-content-info row">
-        <span class="col-md-date">@content.updatedDate.format("yyyy/MM/dd")</span>
-        <span class="col-md-name">@content.author.name</span>
-	@for(tag <- content.tags) {
-          <a href="@routes.TagsController.tagsContents(tag.id)" class="col-md-tag tag">@tag.tagName</a>
-        }
+  <div class="row">
+    <div class="col-md-9 index-contents">
+      @for(content <- Contents.findPagingList(page)) {
+        <div class="index-content">
+          <div class="index-title"><a href="@routes.Blog.show(content.id)">@content.title</a></div>
+          <div class="index-content-info row">
+            <span class="col-md-date">@content.updatedDate.format("yyyy/MM/dd")</span>
+            <span class="col-md-name">@content.author.name</span>
+            <span class="glyphicon glyphicon-tag icon" aria-hidden="true"></span>
+            @for(tag <- content.tags) {
+              <a href="@routes.TagsController.tagsContents(tag.id)" class="col-md-tag tag">@tag.tagName</a>
+            }
+          </div>
+        </div>
+      }
+      <nav>
+        <ul class="pager">
+          @if(page == 1) {
+            <li class="disabled"><a href="#">前のページ</a></li>
+          } else {
+            <li><a href="@routes.Blog.index(page-1)">前のページ</a></li>
+          }
+          @if(Contents.isLastPage(page)) {
+            <li class="disabled"><a href="#">次のページ</a></li>
+          } else {
+            <li><a href="@routes.Blog.index(page+1)">次のページ</a></li>
+          }
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-3">
+      <h3>人気のタグ</h3>
+      @for(tag <- Tags.popularTags) {
+        <div>
+          <a href="@routes.TagsController.tagsContents(tag.id)">@tag.tagName</a>
+        </div>
+      }
+      <div class="index-link">
+        <a href="@routes.TagsController.index">タグ一覧</a>
       </div>
     </div>
-  }
-  <nav>
-    <ul class="pager">
-      @if(page == 1) {
-        <li class="disabled"><a href="#">前のページ</a></li>
-      } else {
-        <li><a href="@routes.Blog.index(page-1)">前のページ</a></li>
-      }
-      @if(Contents.isLastPage(page)) {
-        <li class="disabled"><a href="#">次のページ</a></li>
-      } else {
-        <li><a href="@routes.Blog.index(page+1)">次のページ</a></li>
-      }
-    </ul>
-  </nav>
+  </div>
 }

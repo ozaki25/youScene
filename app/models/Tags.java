@@ -52,4 +52,8 @@ public class Tags extends Model {
     public static List<Tags> findByTagNames(List<String> tagNames) {
 	return find.where().in("tagName",tagNames).findList();
     }
+
+    public static List<Tags> popularTags() {
+	return find.setMaxRows(5).findList();
+    }
 }

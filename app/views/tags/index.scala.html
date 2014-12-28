@@ -1,0 +1,30 @@
+@(title: String)(tags: List[Tags])
+
+@main(title) {
+  <div class="row">
+    <div class="col-md-9 index-contents">
+      @for(tag <- tags) {
+        <div class="index-content">
+          <span class="index-title"><a href="@routes.TagsController.tagsContents(tag.id)">@tag.tagName</a></span>
+          <div class="contents-count">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            <span>@tag.contents.size()</span>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="col-md-3">
+      <div class="latest-contents">
+        <h3>最新の記事</h3>
+        @for(content <- Contents.findLatestContents()) {
+          <div class="latest-content">
+            <a href="@routes.Blog.show(content.id)">@content.title</a>
+          </div>
+        }
+        <div class="index-link">
+          <a href="@routes.Blog.index(1)">記事一覧</a>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -34,6 +34,10 @@ a:focus {
   }
 }
 
+.icon {
+    float:left;
+}
+
 .index-content {
   border-bottom:solid 1px;
   margin-top:5px;
@@ -94,9 +98,13 @@ a:focus {
 
 .label-title,
 .label-article,
-.label-tag {
+.label-tags {
   margin-top:10px;
   margin-bottom:-35px;
+}
+
+.label-tag {
+  margin-right:5px;
 }
 
 .new-tag-link {
@@ -112,11 +120,15 @@ a:focus {
   background-color:#ebf0e6;
 }
 
+.contents-count {
+  float:right;
+}
 .btn-create,
 .btn-update {
   text-align:center;
 }
 
+.index-contents,
 .show-content {
   border-right:solid 1px;
 }
@@ -177,7 +189,7 @@ a:focus {
   margin-bottom:10px;
 }
 
-.content-index-link {
+.index-link {
   text-align:right;
   margin-right:10px;
 }

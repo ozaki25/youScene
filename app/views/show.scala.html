@@ -5,6 +5,7 @@
     <div class="col-md-9 show-content">
       <div class="show-header">
         <div class="show-title">@content.title</div>
+	<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
 	@for(tag <- content.tags) {
 	  <a href="@routes.TagsController.tagsContents(tag.id)" class="show-tag tag">@tag.tagName</a>
 	}
@@ -42,7 +43,10 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="show-author">@(content.author.name)(@content.author.sectionName)</div>
+      <div class="show-author">
+	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+	<span>@(content.author.name)(@content.author.sectionName)</span>
+      </div>
       <div class="latest-contents">
         <h3>最新の記事</h3>
         @for(content <- Contents.findLatestContents()) {
@@ -50,7 +54,7 @@
             <a href="@routes.Blog.show(content.id)">@content.title</a>
           </div>
         }
-	<div class="content-index-link">
+	<div class="index-link">
 	  <a href="@routes.Blog.index(1)">記事一覧</a>
 	</div>
       </div>
