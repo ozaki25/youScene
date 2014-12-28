@@ -3,7 +3,7 @@ package controllers;
 import play.*;
 import models.Contents;
 import play.mvc.*;
-import views.html.*;
+import views.html.accesses.*;
 
 public class AccessesController extends Controller {
   public static Result accesses(Long contentId) {

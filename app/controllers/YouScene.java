@@ -6,7 +6,7 @@ import models.Users;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.*;
+import views.html.authenticate.*;
 
 public class YouScene extends Controller {
   final static Form<Users> signupForm = form(Users.class);

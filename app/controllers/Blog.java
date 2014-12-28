@@ -12,7 +12,7 @@ import static play.data.Form.*;
 import play.data.Form;
 import play.mvc.*;
 import play.mvc.Security.Authenticated;
-import views.html.*;
+import views.html.contents.*;
 
 public class Blog extends Controller {
   final static Form<Contents> contentForm = form(Contents.class);

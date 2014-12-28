@@ -4,7 +4,7 @@ import play.*;
 import models.Contents;
 import models.Users;
 import play.mvc.*;
-import views.html.*;
+import views.html.likes.*;
 
 public class LikesController extends Controller {
   public static Result likes(Long contentId) {
