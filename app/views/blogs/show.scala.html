@@ -1,4 +1,4 @@
-@(blog: Blogs)
+@(blog: Blogs)(user: Users)
 
 @main(blog.title) {
   <div class="row">
@@ -9,11 +9,11 @@
 	@for(tag <- blog.tags) {
 	  <a href="@routes.BlogsController.indexTagging(tag.id)" class="show-tag tag">@tag.tagName</a>
 	}
-        <soan class="show-date">@(blog.updatedDate.format("yyyy年M月d日 HH時M分"))</span>
+        <soan class="show-date">@(blog.updatedDate.format("yyyy年M月d日 H時M分"))</span>
       </div>
       <pre class="show-article">@Html(blog.article)</pre>
       <div class="show-footer">
-        @if(YouScene.loginUser.isAuthor(blog)) {
+        @if(user.isAuthor(blog)) {
           <div class="operate-blog-btn">
             <a class="btn btn-sm btn-youScene" href="@routes.BlogsController.edit(blog.id)">編集</a>
             @helper.form(action = routes.BlogsController.delete(blog.id), 'class -> "delete-blog") {
@@ -22,18 +22,18 @@
           </div>
         }
         <div class="feedback-count">
-          @if(YouScene.loginUser.isAuthor(blog)) {
+          @if(user.isAuthor(blog)) {
             <span>アクセス <a href="@routes.AccessesController.index(blog.id)">@blog.accesses.size</a>回</span>
           } else {
             <span>アクセス @blog.accesses.size回</span>
           }
           <div>
-            @if(YouScene.loginUser.liked(blog)) {
+            @if(user.liked(blog)) {
               <a class="btn btn-xs btn-youScene disabled">いいね！</a>
             } else {
               <a class="btn btn-xs btn-youScene btn-like" content="@blog.id" url="@routes.LikesController.create(blog.id)">いいね！</a>
             }
-            @if(YouScene.loginUser.isAuthor(blog)) {
+            @if(user.isAuthor(blog)) {
               <a href="@routes.LikesController.index(blog.id)" class="like-count">@blog.likes.size</a>回
             } else {
               <span class="like-count">@blog.likes.size</span>回

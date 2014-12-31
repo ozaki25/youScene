@@ -15,7 +15,7 @@ import models.Users;
 import models.Tags;
 import views.html.blogs.*;
 
-public class BlogsController extends Controller {
+public class BlogsController extends YouScene {
   final static Form<Blogs> blogForm = form(Blogs.class);
   final static Form<Tags> tagForm = form(Tags.class);
 
@@ -27,10 +27,10 @@ public class BlogsController extends Controller {
   @Authenticated(Authenticate.class)
   public static Result show(Long blogId) {
     Blogs blog = Blogs.find.byId(blogId);
-    Users user = YouScene.loginUser();
+    Users user = currentUser();
     if(!user.isAuthor(blog)) user.addAccess(blog);
 
-    return ok(show.render(blog));
+    return ok(show.render(blog, user));
   }
 
   @Authenticated(Authenticate.class)
@@ -43,7 +43,7 @@ public class BlogsController extends Controller {
     if(form.hasErrors()) return badRequest(create.render("新規作成",form,tagForm));
 
     Blogs blog = form.get();
-    blog.author = YouScene.loginUser();
+    blog.author = currentUser();
     blog.tags = Tags.findByTagNames(blog.tagNames);
     blog.save();
     blog.saveManyToManyAssociations("tags");
@@ -54,7 +54,7 @@ public class BlogsController extends Controller {
   @Authenticated(Authenticate.class)
   public static Result edit(Long blogId) {
     Blogs blog = Blogs.find.byId(blogId);
-    if(!YouScene.loginUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
+    if(!currentUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
 
     return ok(edit.render("記事編集",blog,blogForm.fill(blog),tagForm));
   }
@@ -74,7 +74,7 @@ public class BlogsController extends Controller {
 
   public static Result delete(Long blogId) {
     Blogs blog = Blogs.find.byId(blogId);
-    if(!YouScene.loginUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
+    if(!currentUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
 
     blog.delete();
     blog.deleteManyToManyAssociations("tags");

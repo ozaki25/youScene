@@ -9,6 +9,6 @@ import views.html.*;
 public class Authenticate extends Authenticator {
   @Override
   public Result onUnauthorized(Context ctx) {
-    return redirect(routes.YouScene.login());
+    return redirect(routes.AuthController.login());
   }
 }

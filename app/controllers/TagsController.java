@@ -10,7 +10,7 @@ import static play.data.Form.*;
 import models.Tags;
 import views.html.tags.*;
 
-public class TagsController extends Controller {
+public class TagsController extends YouScene {
     public static Result index() {
 	List<Tags> tags = Tags.find.all();
 	return ok(index.render("タグ一覧", tags));

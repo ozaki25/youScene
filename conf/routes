@@ -22,11 +22,11 @@ GET     /youScene/blogs/:id/accesses       controllers.AccessesController.index(
 GET     /youScene/tags                     controllers.TagsController.index
 POST    /youScene/tags                     controllers.TagsController.create
 
-GET     /youScene/signup                   controllers.YouScene.entry
-POST    /youScene/signup                   controllers.YouScene.signup
-GET     /youScene/login                    controllers.YouScene.login
-POST    /youScene/login                    controllers.YouScene.authenticate
-GET     /youScene/logout                   controllers.YouScene.logout
+GET     /youScene/signup                   controllers.AuthController.entry
+POST    /youScene/signup                   controllers.AuthController.signup
+GET     /youScene/login                    controllers.AuthController.login
+POST    /youScene/login                    controllers.AuthController.authenticate
+GET     /youScene/logout                   controllers.AuthController.logout
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                      controllers.Assets.at(path="/public", file)

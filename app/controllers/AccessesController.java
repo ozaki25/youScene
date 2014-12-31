@@ -6,10 +6,10 @@ import play.mvc.*;
 import models.Blogs;
 import views.html.accesses.*;
 
-public class AccessesController extends Controller {
+public class AccessesController extends YouScene {
   public static Result index(Long blogId) {
     Blogs blog = Blogs.find.byId(blogId);
-    if(!YouScene.loginUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
+    if(!currentUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
 
     return ok(index.render(blog));
   }
