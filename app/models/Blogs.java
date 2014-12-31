@@ -18,7 +18,7 @@ import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
 @Entity
-public class Contents extends Model {
+public class Blogs extends Model {
     @Id
     public Long id;
     @Required
@@ -31,26 +31,27 @@ public class Contents extends Model {
     public Date createdDate;
     @UpdatedTimestamp
     public Date updatedDate;
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="content")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="blog")
     public List<Accesses> accesses;
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="content")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="blog")
     public List<Likes> likes;
-    @ManyToMany(cascade=CascadeType.REMOVE, mappedBy="contents")
+    @ManyToMany(cascade=CascadeType.REMOVE, mappedBy="blogs")
     public List<Tags> tags = new ArrayList<Tags>();
     public List<String> tagNames = new ArrayList<String>();
-    public static Finder<Long, Contents> find = new Finder(Long.class, Contents.class);
-    final static int perPageContents = 5;
 
-    public static List<Contents> findLatestContents() {
-	return find.orderBy().desc("updatedDate").setMaxRows(perPageContents).findList();
+    public static Finder<Long, Blogs> find = new Finder(Long.class, Blogs.class);
+    final static int perPageBlogs = 5;
+
+    public static List<Blogs> findLatestBlogs() {
+	return find.orderBy().desc("updatedDate").setMaxRows(perPageBlogs).findList();
     }
 
-    public static List<Contents> findPagingList(int page) {
-	return find.orderBy().desc("updatedDate").findPagingList(perPageContents).getPage(page-1).getList();
+    public static List<Blogs> findPagingList(int page) {
+	return find.orderBy().desc("updatedDate").findPagingList(perPageBlogs).getPage(page-1).getList();
     }
 
     public static boolean isLastPage(int page) {
-	int totalPageCount = find.findPagingList(perPageContents).getTotalPageCount();
+	int totalPageCount = find.findPagingList(perPageBlogs).getTotalPageCount();
 	int lastPage = totalPageCount == 0 ? 1 : totalPageCount;
 
 	return page == lastPage;

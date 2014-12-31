@@ -4,10 +4,11 @@ import java.util.List;
 
 import play.*;
 import play.mvc.*;
+import play.data.Form;
+import static play.data.Form.*;
+
 import models.Tags;
 import views.html.tags.*;
-import static play.data.Form.*;
-import play.data.Form;
 
 public class TagsController extends Controller {
     public static Result index() {
@@ -24,10 +25,5 @@ public class TagsController extends Controller {
 
 	tag.save();
 	return ok();
-    }
-
-    public static Result tagsContents(Long tagId) {
-	Tags tag = Tags.find.byId(tagId);
-	return ok(tagsContents.render(tag));
     }
 }

@@ -1,0 +1,63 @@
+@(blog: Blogs)
+
+@main(blog.title) {
+  <div class="row">
+    <div class="col-md-9 show-blog">
+      <div class="show-header">
+        <div class="show-title">@blog.title</div>
+	<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+	@for(tag <- blog.tags) {
+	  <a href="@routes.BlogsController.indexTagging(tag.id)" class="show-tag tag">@tag.tagName</a>
+	}
+        <soan class="show-date">@(blog.updatedDate.format("yyyy年M月d日 HH時M分"))</span>
+      </div>
+      <pre class="show-article">@Html(blog.article)</pre>
+      <div class="show-footer">
+        @if(YouScene.loginUser.isAuthor(blog)) {
+          <div class="operate-blog-btn">
+            <a class="btn btn-sm btn-youScene" href="@routes.BlogsController.edit(blog.id)">編集</a>
+            @helper.form(action = routes.BlogsController.delete(blog.id), 'class -> "delete-blog") {
+              <input class="btn btn-sm btn-default" type="submit" value="削除" onclick="return window.confirm('削除します。よろしいですか?')">
+            }
+          </div>
+        }
+        <div class="feedback-count">
+          @if(YouScene.loginUser.isAuthor(blog)) {
+            <span>アクセス <a href="@routes.AccessesController.index(blog.id)">@blog.accesses.size</a>回</span>
+          } else {
+            <span>アクセス @blog.accesses.size回</span>
+          }
+          <div>
+            @if(YouScene.loginUser.liked(blog)) {
+              <a class="btn btn-xs btn-youScene disabled">いいね！</a>
+            } else {
+              <a class="btn btn-xs btn-youScene btn-like" content="@blog.id" url="@routes.LikesController.create(blog.id)">いいね！</a>
+            }
+            @if(YouScene.loginUser.isAuthor(blog)) {
+              <a href="@routes.LikesController.index(blog.id)" class="like-count">@blog.likes.size</a>回
+            } else {
+              <span class="like-count">@blog.likes.size</span>回
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="show-author">
+	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+	<span>@(blog.author.name)(@blog.author.sectionName)</span>
+      </div>
+      <div class="latest-blogs">
+        <h3>最新の記事</h3>
+        @for(blog <- Blogs.findLatestBlogs()) {
+          <div class="latest-blog">
+            <a href="@routes.BlogsController.show(blog.id)">@blog.title</a>
+          </div>
+        }
+	<div class="index-link">
+	  <a href="@routes.BlogsController.index(1)">記事一覧</a>
+	</div>
+      </div>
+    </div>
+  </div>
+}

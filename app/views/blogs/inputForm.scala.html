@@ -1,4 +1,4 @@
-@(contentForm: Form[Contents])(content: Contents)
+@(blogForm: Form[Blogs])(blog: Blogs)
 
 <div class="label-title">
   <label>
@@ -7,7 +7,7 @@
   </label>
 </div>
 @helper.inputText(
-  contentForm("title"),
+  blogForm("title"),
   'class -> "form-control",
   '_label -> "",
   '_help -> ""
@@ -19,7 +19,7 @@
   </label>
 </div>
 @helper.textarea(
-  contentForm("article"),
+  blogForm("article"),
   'class -> "form-control",
   '_label -> "",
   '_help -> "",
@@ -30,7 +30,7 @@
     <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
     <span class="label-tag">タグ</span>
     <span class="selected-tag">
-      @for(tag <- content.tags) {
+      @for(tag <- blog.tags) {
         <input id="@tag.tagName" name="tagNames[]" type="hidden" value="@tag.tagName">
         <span id="@tag.tagName" class="selected-tag-name tag">
 	  @tag.tagName
@@ -41,7 +41,7 @@
   </label>
 </div>
 @helper.select(
-  contentForm("tag"),
+  blogForm("tag"),
   options = helper.options(Tags.list),
   'class -> "form-control",
   '_label -> "",

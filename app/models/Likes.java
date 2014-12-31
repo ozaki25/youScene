@@ -16,7 +16,7 @@ public class Likes extends Model {
   @Id
   public Long id;
   @ManyToOne
-  public Contents content; 
+  public Blogs blog;
   @ManyToOne
   public Users user;
   @CreatedTimestamp
@@ -24,8 +24,8 @@ public class Likes extends Model {
 
   public static Finder<Long, Likes> find = new Finder(Long.class, Likes.class);
 
-  public Likes(Contents content, Users user) {
-    this.content = content;
+  public Likes(Blogs blog, Users user) {
+    this.blog = blog;
     this.user = user;
     this.createdDate = new Date();
   }

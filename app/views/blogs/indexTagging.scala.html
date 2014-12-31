@@ -1,0 +1,19 @@
+@(tag: Tags)
+
+@main(tag.tagName+"のついた記事一覧") {
+  <h4>
+    <span>@tag.tagName のついた記事一覧</span>
+  </h4>
+  @for(blog <- tag.blogs) {
+    <div class="index-blog">
+      <div class="index-title"><a href="@routes.BlogsController.show(blog.id)">@blog.title</a></div>
+      <div class="index-blog-info row">
+	<span class="col-md-date">@blog.updatedDate.format("yyyy/MM/dd")</span>
+	<span class="col-md-name">@blog.author.name</span>
+	@for(tag <- blog.tags) {
+	  <a href="@routes.BlogsController.indexTagging(tag.id)" class="col-md-tag tag">@tag.tagName</a>
+	}
+      </div>
+    </div>
+  }
+}

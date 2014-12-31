@@ -1,15 +1,16 @@
 package controllers;
 
 import play.*;
-import models.Contents;
 import play.mvc.*;
+
+import models.Blogs;
 import views.html.accesses.*;
 
 public class AccessesController extends Controller {
-  public static Result accesses(Long contentId) {
-    Contents content = Contents.find.byId(contentId);
-    if(!YouScene.loginUser().isAuthor(content)) return redirect(routes.Blog.index(1));
+  public static Result index(Long blogId) {
+    Blogs blog = Blogs.find.byId(blogId);
+    if(!YouScene.loginUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
 
-    return ok(accesses.render(content));
+    return ok(index.render(blog));
   }
 }

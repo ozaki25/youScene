@@ -15,14 +15,14 @@ public class Accesses extends Model {
   @Id
   public Long id;
   @ManyToOne
-  public Contents content; 
+  public Blogs blog;
   @ManyToOne
   public Users user;
   @CreatedTimestamp
   public Date createdDate;
 
-  public Accesses(Contents content, Users user) {
-    this.content = content;
+  public Accesses(Blogs blog, Users user) {
+    this.blog = blog;
     this.user = user;
     this.createdDate = new Date();
   }

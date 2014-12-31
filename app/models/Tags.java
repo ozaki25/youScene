@@ -21,9 +21,10 @@ public class Tags extends Model {
     public Long id;
     public String tagName;
     @ManyToMany
-    public List<Contents> contents;
+    public List<Blogs> blogs;
     @CreatedTimestamp
     public Date createdDate;
+
     public static Finder<Long, Tags> find = new Finder(Long.class, Tags.class);
 
     public Tags(String tagName) {

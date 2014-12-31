@@ -1,11 +1,12 @@
 package controllers;
 
+import play.*;
+import play.mvc.*;
+import play.data.Form;
 import static play.data.Form.form;
+
 import models.Login;
 import models.Users;
-import play.data.Form;
-import play.mvc.Controller;
-import play.mvc.Result;
 import views.html.authenticate.*;
 
 public class YouScene extends Controller {
@@ -23,7 +24,7 @@ public class YouScene extends Controller {
     Users user = form.get();
     user.save();
 
-    return redirect(routes.Blog.index(1));
+    return redirect(routes.BlogsController.index(1));
   }
 
   public static Result login() {
@@ -44,7 +45,7 @@ public class YouScene extends Controller {
     session().put("name",user.name);
     session().put("sectionName",user.sectionName);
 
-    return redirect(routes.Blog.index(1));
+    return redirect(routes.BlogsController.index(1));
   }
 
   public static Result logout() {

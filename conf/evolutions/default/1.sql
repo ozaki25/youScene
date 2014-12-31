@@ -5,25 +5,25 @@
 
 create table accesses (
   id                        bigint not null,
-  content_id                bigint,
+  blog_id                   bigint,
   user_id                   bigint,
   created_date              timestamp not null,
   constraint pk_accesses primary key (id))
 ;
 
-create table contents (
+create table blogs (
   id                        bigint not null,
   title                     varchar(255),
   article                   varchar(255),
   author_id                 bigint,
   created_date              timestamp not null,
   updated_date              timestamp not null,
-  constraint pk_contents primary key (id))
+  constraint pk_blogs primary key (id))
 ;
 
 create table likes (
   id                        bigint not null,
-  content_id                bigint,
+  blog_id                   bigint,
   user_id                   bigint,
   created_date              timestamp not null,
   constraint pk_likes primary key (id))
@@ -45,14 +45,14 @@ create table users (
 ;
 
 
-create table tags_contents (
+create table tags_blogs (
   tags_id                        bigint not null,
-  contents_id                    bigint not null,
-  constraint pk_tags_contents primary key (tags_id, contents_id))
+  blogs_id                       bigint not null,
+  constraint pk_tags_blogs primary key (tags_id, blogs_id))
 ;
 create sequence accesses_seq;
 
-create sequence contents_seq;
+create sequence blogs_seq;
 
 create sequence likes_seq;
 
@@ -60,22 +60,22 @@ create sequence tags_seq;
 
 create sequence users_seq;
 
-alter table accesses add constraint fk_accesses_content_1 foreign key (content_id) references contents (id) on delete restrict on update restrict;
-create index ix_accesses_content_1 on accesses (content_id);
+alter table accesses add constraint fk_accesses_blog_1 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
+create index ix_accesses_blog_1 on accesses (blog_id);
 alter table accesses add constraint fk_accesses_user_2 foreign key (user_id) references users (id) on delete restrict on update restrict;
 create index ix_accesses_user_2 on accesses (user_id);
-alter table contents add constraint fk_contents_author_3 foreign key (author_id) references users (id) on delete restrict on update restrict;
-create index ix_contents_author_3 on contents (author_id);
-alter table likes add constraint fk_likes_content_4 foreign key (content_id) references contents (id) on delete restrict on update restrict;
-create index ix_likes_content_4 on likes (content_id);
+alter table blogs add constraint fk_blogs_author_3 foreign key (author_id) references users (id) on delete restrict on update restrict;
+create index ix_blogs_author_3 on blogs (author_id);
+alter table likes add constraint fk_likes_blog_4 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
+create index ix_likes_blog_4 on likes (blog_id);
 alter table likes add constraint fk_likes_user_5 foreign key (user_id) references users (id) on delete restrict on update restrict;
 create index ix_likes_user_5 on likes (user_id);
 
 
 
-alter table tags_contents add constraint fk_tags_contents_tags_01 foreign key (tags_id) references tags (id) on delete restrict on update restrict;
+alter table tags_blogs add constraint fk_tags_blogs_tags_01 foreign key (tags_id) references tags (id) on delete restrict on update restrict;
 
-alter table tags_contents add constraint fk_tags_contents_contents_02 foreign key (contents_id) references contents (id) on delete restrict on update restrict;
+alter table tags_blogs add constraint fk_tags_blogs_blogs_02 foreign key (blogs_id) references blogs (id) on delete restrict on update restrict;
 
 # --- !Downs
 
@@ -83,9 +83,9 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists accesses;
 
-drop table if exists contents;
+drop table if exists blogs;
 
-drop table if exists tags_contents;
+drop table if exists tags_blogs;
 
 drop table if exists likes;
 
@@ -97,7 +97,7 @@ SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists accesses_seq;
 
-drop sequence if exists contents_seq;
+drop sequence if exists blogs_seq;
 
 drop sequence if exists likes_seq;
 

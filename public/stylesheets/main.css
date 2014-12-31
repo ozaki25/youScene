@@ -38,7 +38,8 @@ a:focus {
     float:left;
 }
 
-.index-content {
+.index-blog,
+.index-tag {
   border-bottom:solid 1px;
   margin-top:5px;
   margin-bottom:5px;
@@ -54,7 +55,7 @@ a:focus {
   font-size:130%;
 }
 
-.index-content-info {
+.index-blog-info {
   margin-right:0px;
   margin-left:0px;
 }
@@ -120,7 +121,7 @@ a:focus {
   background-color:#ebf0e6;
 }
 
-.contents-count {
+.blogs-count {
   float:right;
 }
 .btn-create,
@@ -128,8 +129,9 @@ a:focus {
   text-align:center;
 }
 
-.index-contents,
-.show-content {
+.index-blogs,
+.index-tags,
+.show-blog {
   border-right:solid 1px;
 }
 
@@ -164,7 +166,7 @@ a:focus {
   margin-top:10px;
 }
 
-.operate-content-btn {
+.operate-blog-btn {
   float:left;
 }
 
@@ -172,7 +174,7 @@ a:focus {
   text-align:right;
 }
 
-.delete-content {
+.delete-blog {
   margin-left:5px;
   display:inline;
 }
@@ -181,11 +183,11 @@ a:focus {
   margin-bottom:25px;
 }
 
-.latest-content {
+.latest-blog {
   margin-left:5px;
 }
 
-.latest-contents {
+.latest-blogs {
   margin-bottom:10px;
 }
 

@@ -1,14 +1,14 @@
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="@routes.Blog.index(1)">youScene</a>
+      <a class="navbar-brand" href="@routes.BlogsController.index(1)">youScene</a>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         @if(session.get("username") == null) {
           <li><a href="@routes.YouScene.entry">新規登録</a></li>
         } else {
-        <li><a href="@routes.Blog.create">記事を書く</a></li>
+        <li><a href="@routes.BlogsController.newBlog">記事を書く</a></li>
           <li><a href="#">@(session.get("name"))(@session.get("sectionName"))</a></li>
         }
       </ul>

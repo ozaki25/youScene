@@ -2,27 +2,27 @@
 
 @main(title) {
   <div class="row">
-    <div class="col-md-9 index-contents">
+    <div class="col-md-9 index-tags">
       @for(tag <- tags) {
-        <div class="index-content">
-          <span class="index-title"><a href="@routes.TagsController.tagsContents(tag.id)">@tag.tagName</a></span>
-          <div class="contents-count">
+        <div class="index-tag">
+          <span class="index-title"><a href="@routes.BlogsController.indexTagging(tag.id)">@tag.tagName</a></span>
+          <div class="blogs-count">
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-            <span>@tag.contents.size()</span>
+            <span>@tag.blogs.size</span>
           </div>
         </div>
       }
     </div>
     <div class="col-md-3">
-      <div class="latest-contents">
+      <div class="latest-blogs">
         <h3>最新の記事</h3>
-        @for(content <- Contents.findLatestContents()) {
-          <div class="latest-content">
-            <a href="@routes.Blog.show(content.id)">@content.title</a>
+        @for(blog <- Blogs.findLatestBlogs) {
+          <div class="latest-blog">
+            <a href="@routes.BlogsController.show(blog.id)">@blog.title</a>
           </div>
         }
         <div class="index-link">
-          <a href="@routes.Blog.index(1)">記事一覧</a>
+          <a href="@routes.BlogsController.index(1)">記事一覧</a>
         </div>
       </div>
     </div>

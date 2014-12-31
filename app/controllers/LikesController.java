@@ -1,24 +1,25 @@
 package controllers;
 
 import play.*;
-import models.Contents;
-import models.Users;
 import play.mvc.*;
+
+import models.Blogs;
+import models.Users;
 import views.html.likes.*;
 
 public class LikesController extends Controller {
-  public static Result likes(Long contentId) {
-    Contents content = Contents.find.byId(contentId);
-    if(!YouScene.loginUser().isAuthor(content)) return redirect(routes.Blog.index(1));
+  public static Result index(Long blogId) {
+    Blogs blog = Blogs.find.byId(blogId);
+    if(!YouScene.loginUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
 
-    return ok(likes.render(content));
+    return ok(index.render(blog));
   }
 
-  public static Result like(Long contentId) {
-    Contents content = Contents.find.byId(contentId);
+  public static Result create(Long blogId) {
+    Blogs blog = Blogs.find.byId(blogId);
     Users user = YouScene.loginUser();
-    user.addLike(content);
+    user.addLike(blog);
 
-    return redirect(routes.Blog.show(contentId));
+    return redirect(routes.BlogsController.show(blogId));
   }
 }
