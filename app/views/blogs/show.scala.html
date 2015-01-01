@@ -9,7 +9,7 @@
 	@for(tag <- blog.tags) {
 	  <a href="@routes.BlogsController.indexTagging(tag.id)" class="show-tag tag">@tag.tagName</a>
 	}
-        <soan class="show-date">@(blog.updatedDate.format("yyyy年M月d日 H時M分"))</span>
+        <soan class="show-date">@(blog.updatedDate.format("yyyy年M月d日 H時m分"))</span>
       </div>
       <pre class="show-article">@Html(blog.article)</pre>
       <div class="show-footer">

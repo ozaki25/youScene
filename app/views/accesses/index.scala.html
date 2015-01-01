@@ -8,7 +8,7 @@
   @for(access <- blog.accesses) {
     <div class="index-feedback">
       <div class="row">
-        <span class="col-md-access-date">@access.createdDate.format("yyyy年MM月dd日 HH時MM分")</span>
+        <span class="col-md-access-date">@access.createdDate.format("yyyy年MM月dd日 HH時mm分")</span>
         <span class="col-md-name">@(access.user.name)(@access.user.sectionName)</span>
       </div>
     </div>

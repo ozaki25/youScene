@@ -8,11 +8,11 @@ GET     /youScene                          controllers.BlogsController.index(pag
 GET     /                                  controllers.BlogsController.index(page: Integer = 1)
 POST    /youScene/blogs                    controllers.BlogsController.create
 GET     /youScene/blogs/new                controllers.BlogsController.newBlog
-GET     /youScene/blogs/:id/edit           controllers.BlogsController.edit(id: Long)
 GET     /youScene/blogs/:id                controllers.BlogsController.show(id: Long)
 POST    /youScene/blogs/:id                controllers.BlogsController.update(id: Long)
+GET     /youScene/blogs/:id/edit           controllers.BlogsController.edit(id: Long)
 POST    /youScene/blogs/:id/delete         controllers.BlogsController.delete(id: Long)
-GET     /youScene/blogs/tags/:id           controllers.BlogsController.indexTagging(id: Long)
+GET     /youScene/tags/:id/blogs           controllers.BlogsController.indexTagging(id: Long)
 
 GET     /youScene/blogs/:id/likes          controllers.LikesController.index(id: Long)
 POST    /youScene/blogs/:id/likes          controllers.LikesController.create(id: Long)
