@@ -27,7 +27,7 @@ $ ->
         return
 
       unless isSelected
-        $("span.selected-tag").prepend "<input id=\"" + tagName + "\" name=\"tagNames[]\" type=\"hidden\" value=\"" + tagName + "\"><span id=\"" + tagName + "\" class=\"selected-tag-name tag\">" + tagName + "<a id=\"" + tagName + "\" class=\"delete-tag\" href=\"#\">x</a></span>"
+        $("span.selected-tag").prepend "<input id=\"" + tagName + "\" name=\"tagNames[]\" type=\"hidden\" value=\"" + tagName + "\"><span id=\"" + tagName + "\" class=\"selected-tag-name tag\">" + tagName + "<a id=\"" + tagName + "\" class=\"delete-tag\" href=\"#\">×</a></span>"
         $("select[name=tag] option").each ->
           @remove()  if $(this).val() is tagName
           return
@@ -40,14 +40,14 @@ $ ->
   $("select#tag").change ->
     selected = $("select[name=\"tag\"] option:selected")
     tagName = selected.val()
-    $("span.selected-tag").prepend "<input id=\"" + tagName + "\" name=\"tagNames[]\" type=\"hidden\" value=\"" + tagName + "\"><span id=\"" + tagName + "\"class=\"selected-tag-name tag\">" + tagName + "<a id=\"" + tagName + "\" class=\"delete-tag\" href=\"#\">x</a></span>"
+    $("span.selected-tag").prepend "<input id=\"" + tagName + "\" name=\"tagNames[]\" type=\"hidden\" value=\"" + tagName + "\"><span id=\"" + tagName + "\"class=\"selected-tag-name tag\">" + tagName + "<a id=\"" + tagName + "\" class=\"delete-tag\" href=\"#\">×</a></span>"
     selected.remove()
     return
 
-  $("div.label-tag").on "click", "a.delete-tag", ->
+  $("div.label-tags").on "click", "a.delete-tag", ->
     tagName = $(this).attr("id")
     $("option.blank").after "<option value=\"" + tagName + "\">" + tagName + "</option>"
-    $("div.label-tag [id=\"" + tagName + "\"]").remove()
+    $("div.label-tags [id=\"" + tagName + "\"]").remove()
     return
 
   $("input[name=\"tagNames[]\"]").each ->
