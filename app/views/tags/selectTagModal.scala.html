@@ -15,7 +15,7 @@
 	    </tr>
 	  </thead>
 	  <tbody class="tag-lists">
-	    @for(tag <- Tags.find.all()) {
+	    @for(tag <- Tags.list) {
               <tr>
                 <td><input type="checkbox" id="@tag.tagName" name="tag-list"></td>
 		<td>@tag.tagName</td>

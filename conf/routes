@@ -21,6 +21,7 @@ GET     /youScene/blogs/:id/accesses       controllers.AccessesController.index(
 
 GET     /youScene/tags                     controllers.TagsController.index
 POST    /youScene/tags                     controllers.TagsController.create
+GET     /youScene/tags/list                controllers.TagsController.list(term: String)
 
 GET     /youScene/signup                   controllers.AuthController.entry
 POST    /youScene/signup                   controllers.AuthController.signup

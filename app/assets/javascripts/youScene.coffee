@@ -32,6 +32,7 @@ $ ->
         return
       unless isSelected
         $("span.selected-tag").prepend "<input id=\"" + tagName + "\" name=\"tagNames[]\" type=\"hidden\" value=\"" + tagName + "\"><span id=\"" + tagName + "\" class=\"selected-tag-name tag\">" + tagName + "<a id=\"" + tagName + "\" class=\"delete-tag\" href=\"#\">×</a></span>"
+      $("input#tagName").val ""
       return
     return
 
@@ -65,7 +66,7 @@ $ ->
       i++
     return
 
-  $("input.create,input.update").click ->
+  $("input.post").click ->
     selectedTagField = $("span.selected-tag").html()
     localStorage.setItem "selectedTagField", selectedTagField
     return
@@ -77,4 +78,18 @@ $ ->
     selectedTag.append selectedTagField
     localStorage.removeItem "selectedTagField"
 
+  $("input#tagName").autocomplete source: (request, response) ->
+    $.ajax(
+      url: "/youScene/tags/list"
+      type: "GET"
+      dataType: "json"
+      data:
+        term: request.term
+    ).done (data) ->
+      response $.map(data,(item) ->
+        label: item.tagName
+        value: item.tagName
+      )
+      return
+    return
   return

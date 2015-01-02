@@ -6,6 +6,7 @@ import play.*;
 import play.mvc.*;
 import play.data.Form;
 import static play.data.Form.*;
+import play.libs.Json;
 
 import models.Tags;
 import views.html.tags.*;
@@ -25,5 +26,10 @@ public class TagsController extends YouScene {
 
 	tag.save();
 	return ok();
+    }
+
+    public static Result list(String term) {
+	List<Tags> tags = Tags.findByTagNameLike(term);
+	return ok(Json.toJson(tags));
     }
 }

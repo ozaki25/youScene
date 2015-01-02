@@ -4,8 +4,5 @@
   @helper.form(action = routes.BlogsController.update(blog.id), 'class -> "form-group") {
     @inputForm(blogForm)(tagForm)(blog)
     @tags.selectTagModal(blogForm)
-    <div class="btn-action">
-      <input type="submit" class="btn btn-youScene update" value="更新">
-    </div>
   }
 }

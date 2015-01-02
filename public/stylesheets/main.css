@@ -220,3 +220,7 @@ a:focus {
 .modal-dialog {
   max-width: 500px;
 }
+
+.error {
+  color:red;
+}
