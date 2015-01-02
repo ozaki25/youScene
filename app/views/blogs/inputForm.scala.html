@@ -1,4 +1,4 @@
-@(blogForm: Form[Blogs])(blog: Blogs)
+@(blogForm: Form[Blogs])(tagForm: Form[Tags])(blog: Blogs)
 
 <div class="label-title">
   <label>
@@ -40,10 +40,13 @@
     </span>
   </label>
 </div>
-@helper.select(
-  blogForm("tag"),
-  options = helper.options(Tags.list),
+@helper.inputText(
+  tagForm("tagName"),
   'class -> "form-control",
   '_label -> "",
-  '_default -> "--- Choose a tag ---"
+  '_help -> ""
 )
+<a style="float:right;" class="btn btn-xs btn-youScene btn-create-tag" url="@routes.TagsController.create">入力したタグを追加</a>
+<div class="select-tag-link-area">
+  <a class="select-tag-link" href="#" data-toggle="modal" data-target="#selectTagModal">既存のタグから選択</a>
+</div>

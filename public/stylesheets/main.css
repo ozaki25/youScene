@@ -108,7 +108,7 @@ a:focus {
   margin-right:5px;
 }
 
-.new-tag-link {
+.select-tag-link-area {
   margin-top:-20px;
 }
 
@@ -124,8 +124,8 @@ a:focus {
 .blogs-count {
   float:right;
 }
-.btn-create,
-.btn-update {
+
+.btn-action {
   text-align:center;
 }
 
@@ -212,7 +212,11 @@ a:focus {
   border-color: #66cc00;
 }
 
+.modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
 .modal-dialog {
-  width: 400px;
-  margin-top:10%;
+  max-width: 500px;
 }

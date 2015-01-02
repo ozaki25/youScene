@@ -1,0 +1,33 @@
+@(blogForm: Form[Blogs])
+
+<div class="modal fade" id="selectTagModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<h4 class="modal-title">タグの選択</h4>
+      </div>
+      <div class="modal-body">
+	<table class="table table-bordered">
+	  <thead>
+	    <tr>
+	      <th></th>
+	      <th>タグ名</th>
+	    </tr>
+	  </thead>
+	  <tbody class="tag-lists">
+	    @for(tag <- Tags.find.all()) {
+              <tr>
+                <td><input type="checkbox" id="@tag.tagName" name="tag-list"></td>
+		<td>@tag.tagName</td>
+	      </tr>
+	    }
+          </tbody>
+	</table>
+      </div>
+      <div class="modal-footer">
+	<a class="btn btn-default" data-dismiss="modal">閉じる</a>
+	<a class="btn btn-youScene decision-select-tag">決定</a>
+      </div>
+    </div>
+  </div>
+</div>
