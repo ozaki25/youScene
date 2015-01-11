@@ -20,6 +20,6 @@ public class LikesController extends YouScene {
     Users user = currentUser();
     user.addLike(blog);
 
-    return redirect(routes.BlogsController.show(blogId));
+    return ok();
   }
 }

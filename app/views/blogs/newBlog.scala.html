@@ -14,9 +14,7 @@
       <div class="row">
         @for(image <- user.images) {
 	  <div class="col-md-6">
-	    <a href="#" class="thumbnail">
-              <img src="@routes.Assets.at(image.path)" alt="@image.imageName">
-            </a>
+	    <a href="#" class="thumbnail"><img src="@routes.Assets.at(image.path)" alt="@image.imageName"></a>
 	  </div>
 	}
       </div>
