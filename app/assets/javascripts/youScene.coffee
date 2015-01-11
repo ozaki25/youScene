@@ -111,15 +111,15 @@ $ ->
       type: "POST"
       url: $("a.upload-image").attr "url"
       data: formData
-      dataType: "json"
       processData: false
       contentType: false
-    #.done ->
-    #何故かdoneに行かない 
+    .done ->
+      alert "success!"
+      return
     .fail ->
       #image = [imageName: imageName]
       #$("#uploadTemplate").tmpl(image).appendTo "div.upload-list"
-      alert "success!"
+      alert "fail!"
       return
     return
 

@@ -23,8 +23,7 @@ public class ImagesController extends YouScene {
 	if(!userDir.isDirectory()) if(!userDir.mkdir()) return badRequest();
 	String uploadPath = userPath + "/" + image.id + image.extension();
 	if(!imageFile.renameTo(new File(uploadPath))) return badRequest();
-	System.out.println("return ok");
-	return ok();
 
+	return ok();
     }
 }
