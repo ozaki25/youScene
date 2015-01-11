@@ -21,6 +21,14 @@ create table blogs (
   constraint pk_blogs primary key (id))
 ;
 
+create table images (
+  id                        bigint not null,
+  image_name                varchar(255),
+  user_id                   bigint,
+  created_date              timestamp not null,
+  constraint pk_images primary key (id))
+;
+
 create table likes (
   id                        bigint not null,
   blog_id                   bigint,
@@ -54,6 +62,8 @@ create sequence accesses_seq;
 
 create sequence blogs_seq;
 
+create sequence images_seq;
+
 create sequence likes_seq;
 
 create sequence tags_seq;
@@ -66,10 +76,12 @@ alter table accesses add constraint fk_accesses_user_2 foreign key (user_id) ref
 create index ix_accesses_user_2 on accesses (user_id);
 alter table blogs add constraint fk_blogs_author_3 foreign key (author_id) references users (id) on delete restrict on update restrict;
 create index ix_blogs_author_3 on blogs (author_id);
-alter table likes add constraint fk_likes_blog_4 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
-create index ix_likes_blog_4 on likes (blog_id);
-alter table likes add constraint fk_likes_user_5 foreign key (user_id) references users (id) on delete restrict on update restrict;
-create index ix_likes_user_5 on likes (user_id);
+alter table images add constraint fk_images_user_4 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_images_user_4 on images (user_id);
+alter table likes add constraint fk_likes_blog_5 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
+create index ix_likes_blog_5 on likes (blog_id);
+alter table likes add constraint fk_likes_user_6 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_likes_user_6 on likes (user_id);
 
 
 
@@ -87,6 +99,8 @@ drop table if exists blogs;
 
 drop table if exists tags_blogs;
 
+drop table if exists images;
+
 drop table if exists likes;
 
 drop table if exists tags;
@@ -98,6 +112,8 @@ SET REFERENTIAL_INTEGRITY TRUE;
 drop sequence if exists accesses_seq;
 
 drop sequence if exists blogs_seq;
+
+drop sequence if exists images_seq;
 
 drop sequence if exists likes_seq;
 

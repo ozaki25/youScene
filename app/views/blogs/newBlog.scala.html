@@ -1,8 +1,25 @@
-@(title: String)(blogForm: Form[Blogs])(tagForm: Form[Tags])
+@(title: String)(blogForm: Form[Blogs])(tagForm: Form[Tags])(user: Users)
 
 @main(title) {
-  @helper.form(action = routes.BlogsController.create, 'class -> "form-group") {
-    @inputForm(blogForm)(tagForm)(new Blogs)
-    @tags.selectTagModal(blogForm)
-  }
+  <div class="row">
+    <div class="col-md-9 index-blogs">
+      @helper.form(action = routes.BlogsController.create, 'class -> "form-group") {
+        @inputForm(blogForm)(tagForm)(new Blogs)
+        @tags.selectTagModal(blogForm)
+      }
+    </div>
+    <div class="col-md-3">
+      <a href="#" class="upload-image btn btn-youScene" url="@routes.ImagesController.upload">画像アップロード</a>
+      <input id="image" type="file">
+      <div class="row">
+        @for(image <- user.images) {
+	  <div class="col-md-6">
+	    <a href="#" class="thumbnail">
+              <img src="@routes.Assets.at(image.path)" alt="@image.imageName">
+            </a>
+	  </div>
+	}
+      </div>
+    </div>
+  </div>
 }

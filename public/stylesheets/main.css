@@ -224,3 +224,7 @@ a:focus {
 .error {
   color:red;
 }
+
+input#image {
+  display:none;
+}

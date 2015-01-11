@@ -23,6 +23,8 @@ GET     /youScene/tags                     controllers.TagsController.index
 POST    /youScene/tags                     controllers.TagsController.create
 GET     /youScene/tags/list                controllers.TagsController.list(term: String)
 
+POST    /youScene/images                   controllers.ImagesController.upload
+
 GET     /youScene/signup                   controllers.AuthController.entry
 POST    /youScene/signup                   controllers.AuthController.signup
 GET     /youScene/login                    controllers.AuthController.login

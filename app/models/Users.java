@@ -1,7 +1,11 @@
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import play.data.validation.Constraints.Required;
 
@@ -18,6 +22,8 @@ public class Users extends Model {
   public String name;
   @Required
   public String sectionName;
+  @OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+  public List<Images> images;
 
   public static Finder<Long, Users> find = new Finder(Long.class, Users.class);
 

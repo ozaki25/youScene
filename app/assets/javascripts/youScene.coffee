@@ -1,44 +1,48 @@
 $ ->
+  #いいね
   $("a.btn-like").click ->
-    $.ajax(
+    $.ajax
       url: $(this).attr "url"
       type: "POST"
-    ).done ->
+    .done ->
       $("a.btn-like").addClass "disabled"
       like_count = $(".like-count").text()
       like_count = parseInt like_count
       like_count += 1
       $(".like-count").text like_count
-      return
-    return
 
+  #タグ付け
   $("a.btn-create-tag").click ->
     tagName = $("input#tagName").val()
-    $.ajax(
+    $.ajax
       url: $(this).attr "url"
       type: "POST"
       data:
         tagName: tagName
-    ).done ->
+    .done ->
       isExist = false
       $("input[name='tag-list']").each ->
         isExist = true if $(this).attr("id") is tagName
         return
       unless isExist
-        $("tbody.tag-lists").prepend '<tr><td><input type="checkbox" id="' + tagName + '" name="tag-list"></td><td>' + tagName + '</td></tr>'
+        $("script#list-tag-tmpl").tmpl
+          tagName: tagName
+        .prependTo "tbody.tag-lists"
       isSelected = false
       $("input[name='tagNames[]']").each ->
         isSelected = true if $(this).val() is tagName
         return
       unless isSelected
-        $("span.selected-tag").prepend "<input id=\"" + tagName + "\" name=\"tagNames[]\" type=\"hidden\" value=\"" + tagName + "\"><span id=\"" + tagName + "\" class=\"selected-tag-name tag\">" + tagName + "<a id=\"" + tagName + "\" class=\"delete-tag\" href=\"#\">×</a></span>"
+        $("script#selected-tags-tmpl").tmpl
+          tagName: tagName
+        .prependTo "span.selected-tag"
       $("input#tagName").val ""
       return
     return
 
   $("div.label-tags").on "click", "a.delete-tag", ->
     tagName = $(this).attr "id"
-    $("div.label-tags [id=\"" + tagName + "\"]").remove()
+    $("div.label-tags [id=#{tagName}]").remove()
     return
 
   $("a.decision-select-tag").click ->
@@ -49,7 +53,9 @@ $ ->
     $("span.selected-tag").empty()
     i = 0
     while i < tagNames.length
-      $("span.selected-tag").prepend '<input id="' + tagNames[i] + '" name="tagNames[]" type="hidden" value="' + tagNames[i] + '"><span id="' + tagNames[i] + '" class="selected-tag-name tag">' + tagNames[i] + '<a id="' + tagNames[i] + '" class="delete-tag" href="#">×</a></span'
+      $("script#selected-tags-tmpl").tmpl
+        tagName: tagNames[i]
+      .prependTo "span.selected-tag"
       i++
     $("#selectTagModal").modal "hide"
     return
@@ -62,7 +68,7 @@ $ ->
     $("input[name='tag-list']").removeAttr "checked"
     i = 0
     while i < selectedTags.length
-      $("input[id='" + selectedTags[i] + "']").prop "checked", true
+      $("input[id='#{selectedTags[i]}']").prop "checked", true
       i++
     return
 
@@ -71,7 +77,7 @@ $ ->
     localStorage.setItem "selectedTagField", selectedTagField
     return
 
-  selectedTagField = localStorage.getItem("selectedTagField")
+  selectedTagField = localStorage.getItem "selectedTagField"
   if selectedTagField?
     selectedTag = $("span.selected-tag")
     selectedTag.empty()
@@ -79,17 +85,47 @@ $ ->
     localStorage.removeItem "selectedTagField"
 
   $("input#tagName").autocomplete source: (request, response) ->
-    $.ajax(
+    $.ajax
       url: "/youScene/tags/list"
       type: "GET"
       dataType: "json"
       data:
         term: request.term
-    ).done (data) ->
-      response $.map(data,(item) ->
+    .done (data) ->
+      response $.map data,(item) ->
         label: item.tagName
         value: item.tagName
-      )
       return
+    return
+
+  #画像アップロード
+  $("a.upload-image").click ->
+    $("input#image").click()
+    false;
+
+  $("input#image").change ->
+    imageName = $(this).val()
+    formData = new FormData()
+    formData.append "image", $("input#image").prop("files")[0]
+    $.ajax
+      type: "POST"
+      url: $("a.upload-image").attr "url"
+      data: formData
+      dataType: "json"
+      processData: false
+      contentType: false
+    #.done ->
+    #何故かdoneに行かない 
+    .fail ->
+      #image = [imageName: imageName]
+      #$("#uploadTemplate").tmpl(image).appendTo "div.upload-list"
+      alert "success!"
+      return
+    return
+
+  $("a.thumbnail").dblclick ->
+    $("textarea#article").selection "insert",
+      text: $(this).html()
+      mode: "before"
     return
   return

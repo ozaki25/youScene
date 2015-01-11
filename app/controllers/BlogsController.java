@@ -35,12 +35,12 @@ public class BlogsController extends YouScene {
 
   @Authenticated(Authenticate.class)
   public static Result newBlog() {
-      return ok(newBlog.render("新規作成",blogForm,tagForm));
+      return ok(newBlog.render("新規作成",blogForm,tagForm,currentUser()));
   }
 
   public static Result create() {
     Form<Blogs> form = blogForm.bindFromRequest();
-    if(form.hasErrors()) return badRequest(newBlog.render("新規作成",form,tagForm));
+    if(form.hasErrors()) return badRequest(newBlog.render("新規作成",form,tagForm,currentUser()));
 
     Blogs blog = form.get();
     blog.author = currentUser();

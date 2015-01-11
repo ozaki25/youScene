@@ -47,9 +47,16 @@
   'class -> "form-control"
 )
 <div class="select-tag-link-area">
-  <div><a class="btn btn-xs btn-youScene btn-create-tag" url="@routes.TagsController.create">入力したタグを追加</a><div>
+  <div><a class="btn btn-xs btn-youScene btn-create-tag" url="@routes.TagsController.create">入力したタグを追加</a></div>
   <div><a class="select-tag-link" href="#" data-toggle="modal" data-target="#selectTagModal">既存のタグから選択</a></div>
 </div>
 <div class="btn-action">
   <input type="submit" class="btn btn-youScene post" value="投稿">
 </div>
+<script id="selected-tags-tmpl" type="text/x-jquery-tmpl">
+  <input id="${tagName}" name="tagNames[]" type="hidden" value="${tagName}">
+  <span id="${tagName}" class="selected-tag-name tag">
+    ${tagName}
+    <a id="${tagName}" class="delete-tag" href="#">×</a>
+  </span>
+</script>
