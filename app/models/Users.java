@@ -1,14 +1,15 @@
 package models;
 
 import java.util.List;
+import java.io.File;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import play.*;
 import play.data.validation.Constraints.Required;
-
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
@@ -48,4 +49,18 @@ public class Users extends Model {
     Likes like = new Likes(blog, this);
     like.save();
   }
+
+    public String userPath() {
+	return Play.application().path().getPath() + "/public/uploads/" + this.id;
+    }
+
+    public boolean isExistUserDir() {
+	File userDir = new File(this.userPath());
+	return userDir.isDirectory();
+    }
+
+    public boolean mkUserDir() {	
+	File userDir = new File(this.userPath());
+	return userDir.mkdir();
+    }
 }

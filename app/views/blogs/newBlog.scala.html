@@ -11,12 +11,17 @@
     <div class="col-md-3">
       <a href="#" class="upload-image btn btn-youScene" url="@routes.ImagesController.upload">画像アップロード</a>
       <input id="image" type="file">
-      <div class="row">
+      <div class="row uploads-list">
         @for(image <- user.images) {
 	  <div class="col-md-6">
-	    <a href="#" class="thumbnail"><img src="@routes.Assets.at(image.path)" alt="@image.imageName"></a>
+	    <a href="#" class="thumbnail"><img src="@routes.Assets.at(image.relativePath)" alt="@image.imageName"></img></a>
 	  </div>
 	}
+	<script id="uploadTmplate" type="text/x-jquery-tmpl">
+	  <div class="col-md-6">
+	    <a href="#" class="thumbnail"><img src="@routes.Assets.at("${path}")" alt=${name}></img></a>
+	  </div>
+	</script>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.File;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -32,16 +33,20 @@ public class Images extends Model {
 	this.user = user;
     }
 
-    public static String lateestImagePath(Users user) {
-	Images image = find.orderBy("id desc").findUnique();
-	return "uploads/" + user.id + "/" + image.id + image.extension();
+    public boolean save(File imageFile) {
+	if(!this.user.isExistUserDir()) if(!this.user.mkUserDir()) return false;
+
+	String uploadPath = this.user.userPath() + "/" + this.id + this.extension();
+	if(!imageFile.renameTo(new File(uploadPath))) return false;
+
+	return true;
     }
 
     public String extension() {
 	return this.imageName.substring(this.imageName.lastIndexOf("."));
     }
 
-    public String path() {
-	return "/uploads/" + this.user.id + "/" +  this.id + this.extension();
+    public String relativePath() {
+	return "uploads/" + this.user.id + "/" +  this.id + this.extension();
     }
 }

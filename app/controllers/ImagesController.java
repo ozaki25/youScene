@@ -16,6 +16,11 @@ public class ImagesController extends YouScene {
 	File imageFile = file.getFile();
 
 	Images image = new Images(imageName,currentUser());
+	if(!image.save(imageFile)) return badRequest();
+
+	return ok(image.relativePath());
+	
+	/*
 	image.save();
 
 	String userPath = Play.application().path().getPath() + "/public/uploads/" + currentUser().id;
@@ -25,5 +30,6 @@ public class ImagesController extends YouScene {
 	if(!imageFile.renameTo(new File(uploadPath))) return badRequest();
 
 	return ok();
+*/
     }
 }

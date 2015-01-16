@@ -228,3 +228,21 @@ a:focus {
 input#image {
   display:none;
 }
+
+.col-thumbnail {
+    width: 50%;
+    position: rilative;
+    min-height: 1px;
+    padding: 5px;
+    float: left;
+}
+
+.a.thumbnail {
+    height: 94px;
+    width: 94px;
+}
+
+.thumbnail > img, .img-thumbnail {
+    display: inline-block;
+    max-height: 100%;
+}

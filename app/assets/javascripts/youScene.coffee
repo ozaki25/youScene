@@ -116,9 +116,11 @@ $ ->
     .done ->
       alert "success!"
       return
+    .done path ->
+      image = [path: path, name: imageName]
+      $("#uploadTemplate").tmpl(image).appendTo "div.upload-list"
+      alert "success!"
     .fail ->
-      #image = [imageName: imageName]
-      #$("#uploadTemplate").tmpl(image).appendTo "div.upload-list"
       alert "fail!"
       return
     return
