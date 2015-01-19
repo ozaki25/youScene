@@ -229,6 +229,16 @@ input#image {
   display:none;
 }
 
+a.btn-upload-image {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+div.upload-list {
+    max-height: 480px;
+    overflow-y: scroll;
+}
+
 .col-thumbnail {
     width: 50%;
     position: rilative;
@@ -238,8 +248,10 @@ input#image {
 
 a.thumbnail {
     height: 107px;
+    padding: 1px;
 }
 
 a.thumbnail > img {
-    max-height: 97px;
+    max-height: 100%;
+    border-radius: 4px;
 }

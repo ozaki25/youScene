@@ -99,7 +99,7 @@ $ ->
     return
 
   #画像アップロード
-  $("a.upload-image").click ->
+  $("a.btn-upload-image").click ->
     $("input#image").click()
     false;
 
@@ -109,14 +109,14 @@ $ ->
     formData.append "image", $("input#image").prop("files")[0]
     $.ajax
       type: "POST"
-      url: $("a.upload-image").attr "url"
+      url: $("a.btn-upload-image").attr "url"
       data: formData
       processData: false
       contentType: false
     .done (path) ->
       image = [path: path, name: imageName]
       alert "success!"
-      $("#uploadTemplate").tmpl(image).appendTo "div.uploads-list"
+      $("#uploadTemplate").tmpl(image).appendTo "div.upload-list"
     .fail ->
       alert "fail!"
       return

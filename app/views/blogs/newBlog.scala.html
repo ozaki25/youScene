@@ -9,9 +9,9 @@
       }
     </div>
     <div class="col-md-3">
-      <a href="#" class="upload-image btn btn-youScene" url="@routes.ImagesController.upload">画像アップロード</a>
+      <a href="#" class="btn-upload-image btn btn-youScene" url="@routes.ImagesController.upload">画像アップロード</a>
       <input id="image" type="file">
-      <div class="row uploads-list">
+      <div class="row upload-list">
         @for(image <- user.images) {
 	  <div class="col-thumbnail">
 	    <a class="thumbnail"><img src="@routes.Assets.at(image.relativePath)" alt="@image.imageName"></img></a>
