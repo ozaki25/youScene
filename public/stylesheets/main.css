@@ -233,16 +233,13 @@ input#image {
     width: 50%;
     position: rilative;
     min-height: 1px;
-    padding: 5px;
     float: left;
 }
 
-.a.thumbnail {
-    height: 94px;
-    width: 94px;
+a.thumbnail {
+    height: 107px;
 }
 
-.thumbnail > img, .img-thumbnail {
-    display: inline-block;
-    max-height: 100%;
+a.thumbnail > img {
+    max-height: 97px;
 }

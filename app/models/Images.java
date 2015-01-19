@@ -36,6 +36,8 @@ public class Images extends Model {
     public boolean save(File imageFile) {
 	if(!this.user.isExistUserDir()) if(!this.user.mkUserDir()) return false;
 
+	this.save();
+
 	String uploadPath = this.user.userPath() + "/" + this.id + this.extension();
 	if(!imageFile.renameTo(new File(uploadPath))) return false;
 

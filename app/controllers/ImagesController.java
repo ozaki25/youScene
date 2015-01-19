@@ -15,21 +15,9 @@ public class ImagesController extends YouScene {
 	String imageName = file.getFilename();
 	File imageFile = file.getFile();
 
-	Images image = new Images(imageName,currentUser());
+	Images image = new Images(imageName, currentUser());
 	if(!image.save(imageFile)) return badRequest();
 
 	return ok(image.relativePath());
-	
-	/*
-	image.save();
-
-	String userPath = Play.application().path().getPath() + "/public/uploads/" + currentUser().id;
-	File userDir = new File(userPath);
-	if(!userDir.isDirectory()) if(!userDir.mkdir()) return badRequest();
-	String uploadPath = userPath + "/" + image.id + image.extension();
-	if(!imageFile.renameTo(new File(uploadPath))) return badRequest();
-
-	return ok();
-*/
     }
 }
