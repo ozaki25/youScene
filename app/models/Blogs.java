@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -24,6 +25,7 @@ public class Blogs extends Model {
     @Required
     public String title;
     @Required
+    @Column(columnDefinition="TEXT")
     public String article;
     @ManyToOne
     public Users author;

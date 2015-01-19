@@ -14,7 +14,7 @@ create table accesses (
 create table blogs (
   id                        bigint not null,
   title                     varchar(255),
-  article                   varchar(255),
+  article                   TEXT,
   author_id                 bigint,
   created_date              timestamp not null,
   updated_date              timestamp not null,
