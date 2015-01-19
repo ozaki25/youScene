@@ -127,4 +127,11 @@ $ ->
       text: $(this).html()
       mode: "before"
     return
-  return
+
+  $("a.image-insert-article").click ->
+    image_id = $(this).attr "image_id"
+    $("textarea#article").selection "insert",
+      text: $("a#image_id_#{image_id}").html()
+      mode: "before"
+    return
+return

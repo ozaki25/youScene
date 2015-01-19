@@ -13,11 +13,15 @@
       <input id="image" type="file">
       <div class="row upload-list">
         @for(image <- user.images) {
-	  <div class="col-thumbnail">
-	    <a class="thumbnail"><img src="@routes.Assets.at(image.relativePath)" alt="@image.imageName"></img></a>
+	  <div class="col-thumbnail btn-group">
+	    <a id="image_id_@image.id" class="thumbnail dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><img src="@routes.Assets.at(image.relativePath)" alt="@image.imageName"></img></a>
+	    <ul class="dropdown-menu" role="menu">
+	      <li><a image_id="@image.id" class="image-insert-article" href="#">この画像を本文に挿入</a></li>
+	      <li><a image_id="@image.id" class="image-destory" href="#">この画像を削除する</a></li>
+	    </ul>
 	  </div>
-	}
-	<script id="uploadTemplate" type="text/x-jquery-tmpl">
+        }
+        <script id="uploadTemplate" type="text/x-jquery-tmpl">
 	  <div class="col-thumbnail">
 	    <a class="thumbnail"><img src="@routes.Assets.at("${path}")" alt=${name}></img></a>
 	  </div>

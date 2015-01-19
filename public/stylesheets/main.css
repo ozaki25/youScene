@@ -234,10 +234,13 @@ a.btn-upload-image {
     margin-bottom: 3px;
 }
 
+/*
 div.upload-list {
     max-height: 480px;
+    overflow-x: visible;
     overflow-y: scroll;
 }
+*/
 
 .col-thumbnail {
     width: 50%;
