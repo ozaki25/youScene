@@ -25,6 +25,7 @@ create table images (
   id                        bigint not null,
   image_name                varchar(255),
   user_id                   bigint,
+  file                      blob,
   created_date              timestamp not null,
   constraint pk_images primary key (id))
 ;
