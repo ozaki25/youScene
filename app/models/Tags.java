@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 
 import com.avaje.ebean.annotation.CreatedTimestamp;
 
@@ -24,6 +25,7 @@ public class Tags extends Model {
     public String tagName;
     @ManyToMany
     @JsonBackReference
+    @OrderBy("createdDate Desc")
     public List<Blogs> blogs;
     @CreatedTimestamp
     public Date createdDate;

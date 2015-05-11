@@ -2,18 +2,17 @@ package models;
 
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 import java.io.File;
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.BufferedOutputStream;
+import java.sql.Blob;
 
 import javax.persistence.Lob;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
 import com.avaje.ebean.annotation.CreatedTimestamp;
 
 import play.data.validation.Constraints.Required;
@@ -41,16 +40,15 @@ public class Images extends Model {
     }
 
     public boolean save(File imageFile) throws Exception {
-	if(!this.user.isExistUserDir()) if(!this.user.mkUserDir()) return false;
-
+	if(!this.user.isExistUserDir() && !this.user.mkUserDir()) return false;
 	this.save();
 
-	String uploadPath = this.user.userPath() + "/" + this.id + this.extension();
-	if(!imageFile.renameTo(new File(uploadPath))) return false;
-	System.out.println(new File(uploadPath));
-	InputStream imageInputStream = new FileInputStream(new File(uploadPath));
-	this.file = getByteArray(imageInputStream);
-	this.save();
+	if(!imageFile.renameTo(new File(this.absolutePath()))) return false;
+
+	InputStream imageInputStream = new FileInputStream(new File(this.absolutePath()));
+	Images image = Images.find.byId(this.id);
+	image.file = getByteArray(imageInputStream);
+	image.save();
 
 	return true;
     }
@@ -63,10 +61,18 @@ public class Images extends Model {
 	return "uploads/" + this.user.id + "/" +  this.id + this.extension();
     }
 
+    public String absolutePath() {
+	return this.user.userPath() + "/" + this.id + this.extension();
+    }
+
     public static byte[] getByteArray(InputStream is) throws Exception {
 	ByteArrayOutputStream b = new ByteArrayOutputStream();
 	BufferedOutputStream os = new BufferedOutputStream(b);
-	os.write(0);
+	while(true) {
+	    int i = is.read();
+	    if(i == -1) break;
+	    os.write(i);
+	}
 	os.flush();
 	os.close();
 	return b.toByteArray();
