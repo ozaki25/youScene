@@ -113,10 +113,9 @@ $ ->
       data: formData
       processData: false
       contentType: false
-    .done (path) ->
-      image = [path: path, name: imageName]
+    .done (html) ->
       alert "success!"
-      $("#uploadTemplate").tmpl(image).appendTo "div.upload-list"
+      $("div.upload-list").append html
     .fail ->
       alert "fail!"
       return

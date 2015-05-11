@@ -12,7 +12,6 @@ GET     /youScene/blogs/:id                controllers.BlogsController.show(id: 
 POST    /youScene/blogs/:id                controllers.BlogsController.update(id: Long)
 GET     /youScene/blogs/:id/edit           controllers.BlogsController.edit(id: Long)
 POST    /youScene/blogs/:id/delete         controllers.BlogsController.delete(id: Long)
-GET     /youScene/tags/:id/blogs           controllers.BlogsController.indexTagging(id: Long)
 
 GET     /youScene/blogs/:id/likes          controllers.LikesController.index(id: Long)
 POST    /youScene/blogs/:id/likes          controllers.LikesController.create(id: Long)
@@ -22,9 +21,10 @@ GET     /youScene/blogs/:id/accesses       controllers.AccessesController.index(
 GET     /youScene/tags                     controllers.TagsController.index
 POST    /youScene/tags                     controllers.TagsController.create
 GET     /youScene/tags/list                controllers.TagsController.list(term: String)
+GET     /youScene/tags/:id/blogs           controllers.BlogsController.indexTagging(id: Long)
 
 POST    /youScene/images                   controllers.ImagesController.upload
-GET     /youScene/images/get               controllers.ImagesController.renderImage(id: Long)
+GET     /youScene/images/:id               controllers.ImagesController.show(id: Long)
 
 GET     /youScene/signup                   controllers.AuthController.entry
 POST    /youScene/signup                   controllers.AuthController.signup

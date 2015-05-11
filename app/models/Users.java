@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import play.*;
 import play.data.validation.Constraints.Required;
@@ -24,6 +25,7 @@ public class Users extends Model {
   @Required
   public String sectionName;
   @OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+  @OrderBy("createdDate Desc")
   public List<Images> images;
 
   public static Finder<Long, Users> find = new Finder(Long.class, Users.class);

@@ -4,49 +4,49 @@
 # --- !Ups
 
 create table accesses (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   blog_id                   bigint,
   user_id                   bigint,
-  created_date              timestamp not null,
+  created_date              datetime not null,
   constraint pk_accesses primary key (id))
 ;
 
 create table blogs (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   title                     varchar(255),
   article                   TEXT,
   author_id                 bigint,
-  created_date              timestamp not null,
-  updated_date              timestamp not null,
+  created_date              datetime not null,
+  updated_date              datetime not null,
   constraint pk_blogs primary key (id))
 ;
 
 create table images (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   image_name                varchar(255),
   user_id                   bigint,
-  file                      blob,
-  created_date              timestamp not null,
+  file                      longblob,
+  created_date              datetime not null,
   constraint pk_images primary key (id))
 ;
 
 create table likes (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   blog_id                   bigint,
   user_id                   bigint,
-  created_date              timestamp not null,
+  created_date              datetime not null,
   constraint pk_likes primary key (id))
 ;
 
 create table tags (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   tag_name                  varchar(255),
-  created_date              timestamp not null,
+  created_date              datetime not null,
   constraint pk_tags primary key (id))
 ;
 
 create table users (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   user_id                   varchar(255),
   name                      varchar(255),
   section_name              varchar(255),
@@ -59,18 +59,6 @@ create table tags_blogs (
   blogs_id                       bigint not null,
   constraint pk_tags_blogs primary key (tags_id, blogs_id))
 ;
-create sequence accesses_seq;
-
-create sequence blogs_seq;
-
-create sequence images_seq;
-
-create sequence likes_seq;
-
-create sequence tags_seq;
-
-create sequence users_seq;
-
 alter table accesses add constraint fk_accesses_blog_1 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
 create index ix_accesses_blog_1 on accesses (blog_id);
 alter table accesses add constraint fk_accesses_user_2 foreign key (user_id) references users (id) on delete restrict on update restrict;
@@ -92,33 +80,21 @@ alter table tags_blogs add constraint fk_tags_blogs_blogs_02 foreign key (blogs_
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists accesses;
+drop table accesses;
 
-drop table if exists blogs;
+drop table blogs;
 
-drop table if exists tags_blogs;
+drop table tags_blogs;
 
-drop table if exists images;
+drop table images;
 
-drop table if exists likes;
+drop table likes;
 
-drop table if exists tags;
+drop table tags;
 
-drop table if exists users;
+drop table users;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists accesses_seq;
-
-drop sequence if exists blogs_seq;
-
-drop sequence if exists images_seq;
-
-drop sequence if exists likes_seq;
-
-drop sequence if exists tags_seq;
-
-drop sequence if exists users_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
