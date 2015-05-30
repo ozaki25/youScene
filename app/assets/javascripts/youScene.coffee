@@ -104,7 +104,6 @@ $ ->
     false;
 
   $("input#image").change ->
-    imageName = $(this).val()
     formData = new FormData()
     formData.append "image", $("input#image").prop("files")[0]
     $.ajax
@@ -114,23 +113,37 @@ $ ->
       processData: false
       contentType: false
     .done (html) ->
-      alert "success!"
       $("div.upload-list").prepend html
     .fail ->
-      alert "fail!"
-      return
+      alert "アップロードに失敗しました"
     return
 
-  $("a.thumbnail").dblclick ->
+  $("div.upload-list").on "dblclick", "a.thumbnail", ->
     $("textarea#article").selection "insert",
       text: $(this).html()
       mode: "before"
     return
 
-  $("a.image-insert-article").click ->
+  $("div.upload-list").on "click", "a.image-insert-article", ->
     image_id = $(this).attr "image_id"
     $("textarea#article").selection "insert",
       text: $("a#image_id_#{image_id}").html()
       mode: "before"
     return
-return
+
+  $("div.upload-list").on "click", "a.image-delete", ->
+    image_id = $(this).attr "image_id"
+    formData = new FormData()
+    console.log image_id
+    formData.append "id", image_id
+    $.ajax
+      type: "POST"
+      url: $(this).attr "url"
+      data: formData
+      processData: false
+    .done (html) ->
+      $("div.image-id-#{image_id}").remove()
+    .fail ->
+      alert "画像の削除に失敗しました"
+    return
+  return

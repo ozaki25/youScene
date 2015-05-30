@@ -25,6 +25,7 @@ GET     /youScene/tags/:id/blogs           controllers.BlogsController.indexTagg
 
 POST    /youScene/images                   controllers.ImagesController.upload
 GET     /youScene/images/:id               controllers.ImagesController.show(id: Long)
+POST    /youScene/images/:id/delete        controllers.ImagesController.delete(id: Long)
 
 GET     /youScene/signup                   controllers.AuthController.entry
 POST    /youScene/signup                   controllers.AuthController.signup

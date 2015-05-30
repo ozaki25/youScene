@@ -29,4 +29,15 @@ public class ImagesController extends YouScene {
 
 	return ok(is).as("image/png");
     }
+
+  public static Result delete(Long id) {
+    Images image = Images.find.byId(id);
+    try {
+	image.delete();
+    } catch(Exception e) {
+	e.printStackTrace();
+	return badRequest();
+    }
+    return ok();
+  }
 }

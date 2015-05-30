@@ -1,9 +1,9 @@
 @(image: Images)
 
-<div class="col-thumbnail btn-group">
+<div class="col-thumbnail btn-group image-id-@image.id">
   <a id="image_id_@image.id" class="thumbnail dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><img src="@routes.ImagesController.show(image.id)" alt="@image.imageName"></a>
   <ul class="dropdown-menu" role="menu">
     <li><a image_id="@image.id" class="image-insert-article" href="#">貼り付ける</a></li>
-    <li><a image_id="@image.id" class="image-destory" href="#">削除する</a></li>
+    <li><a image_id="@image.id" class="image-delete" href="#" url="@routes.ImagesController.delete(image.id)">削除する</a></li>
   </ul>
 </div>
