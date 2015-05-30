@@ -1,0 +1,9 @@
+@(user: Users)
+
+<a href="#" class="btn-upload-image btn btn-youScene" url="@routes.ImagesController.upload">画像アップロード</a>
+<input id="image" type="file">
+<div class="row upload-list">
+  @for(image <- user.images) {
+    @images.show(image)
+  }
+</div>

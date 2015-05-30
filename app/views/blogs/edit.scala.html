@@ -1,8 +1,15 @@
-@(title: String)(blog: Blogs)(blogForm: Form[Blogs])(tagForm: Form[Tags])
+@(title: String)(blog: Blogs)(blogForm: Form[Blogs])(tagForm: Form[Tags])(user: Users)
 
 @main(title) {
-  @helper.form(action = routes.BlogsController.update(blog.id), 'class -> "form-group") {
-    @inputForm(blogForm)(tagForm)(blog)
-    @tags.selectTagModal(blogForm)
-  }
+  <div class="row">
+    <div class="col-md-9 index-blogs">
+      @helper.form(action = routes.BlogsController.update(blog.id), 'class -> "form-group") {
+        @inputForm(blogForm)(tagForm)(blog)
+        @tags.selectTagModal(blogForm)
+      }
+    </div>
+    <div class="col-md-3">
+      @images.upload(user)
+    </div>
+  </div>
 }

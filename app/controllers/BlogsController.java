@@ -56,13 +56,13 @@ public class BlogsController extends YouScene {
     Blogs blog = Blogs.find.byId(blogId);
     if(!currentUser().isAuthor(blog)) return redirect(routes.BlogsController.index(1));
 
-    return ok(edit.render("記事編集",blog,blogForm.fill(blog),tagForm));
+    return ok(edit.render("記事編集",blog,blogForm.fill(blog),tagForm,currentUser()));
   }
 
   public static Result update(Long blogId) {
     Form<Blogs> form = blogForm.bindFromRequest();
     Blogs blog = Blogs.find.byId(blogId);
-    if(form.hasErrors()) return badRequest(edit.render("記事編集",blog,form,tagForm));
+    if(form.hasErrors()) return badRequest(edit.render("記事編集",blog,form,tagForm,currentUser()));
 
     blog = form.get();
     blog.tags = Tags.findByTagNames(blog.tagNames);
