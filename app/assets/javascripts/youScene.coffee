@@ -115,7 +115,7 @@ $ ->
       contentType: false
     .done (html) ->
       alert "success!"
-      $("div.upload-list").append html
+      $("div.upload-list").prepend html
     .fail ->
       alert "fail!"
       return
