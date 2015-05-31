@@ -135,10 +135,6 @@ a:focus {
   border-right:solid 1px;
 }
 
-.show-header {
-  border-bottom:solid 1px;
-}
-
 .show-title {
   font-size:200%;
   color:#006633;
@@ -159,6 +155,7 @@ a:focus {
   background-color: #fffff0;
   border: none;
   border-radius: 0px;
+  border-top:solid 1px;
   border-bottom:solid 1px;
 }
 
@@ -177,10 +174,6 @@ a:focus {
 .delete-blog {
   margin-left:5px;
   display:inline;
-}
-
-.show-footer {
-  margin-bottom:25px;
 }
 
 .latest-blog {
