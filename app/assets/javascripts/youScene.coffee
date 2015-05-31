@@ -146,4 +146,14 @@ $ ->
       text: $("a#image_id_#{image_id}").html()
       mode: "before"
     return
-  return
+
+  #プレビュー
+  $("a.preview").click ->
+    title = $("input#title").val()
+    article = $("textarea#article").val()
+    $("div.preview").empty()
+    $("div.preview").append "<div class=\"show-title\">#{title}</div>"
+    $("div.preview").append "<pre class=\"show-article\">#{article}</pre>"
+    return
+
+return
