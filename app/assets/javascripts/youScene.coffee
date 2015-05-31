@@ -118,6 +118,22 @@ $ ->
       alert "アップロードに失敗しました"
     return
 
+  $("div.upload-list").on "click", "a.image-delete", ->
+    image_id = $(this).attr "image_id"
+    formData = new FormData()
+    console.log image_id
+    formData.append "id", image_id
+    $.ajax
+      type: "POST"
+      url: $(this).attr "url"
+      data: formData
+      processData: false
+    .done () ->
+      $("div.image-id-#{image_id}").remove()
+    .fail ->
+      alert "画像の削除に失敗しました"
+    return
+
   $("div.upload-list").on "dblclick", "a.thumbnail", ->
     $("textarea#article").selection "insert",
       text: $(this).html()
@@ -129,21 +145,5 @@ $ ->
     $("textarea#article").selection "insert",
       text: $("a#image_id_#{image_id}").html()
       mode: "before"
-    return
-
-  $("div.upload-list").on "click", "a.image-delete", ->
-    image_id = $(this).attr "image_id"
-    formData = new FormData()
-    console.log image_id
-    formData.append "id", image_id
-    $.ajax
-      type: "POST"
-      url: $(this).attr "url"
-      data: formData
-      processData: false
-    .done (html) ->
-      $("div.image-id-#{image_id}").remove()
-    .fail ->
-      alert "画像の削除に失敗しました"
     return
   return

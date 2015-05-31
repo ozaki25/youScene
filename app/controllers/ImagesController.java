@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.List;
 import java.io.File;
 import java.io.ByteArrayInputStream;
 
@@ -17,8 +16,8 @@ public class ImagesController extends YouScene {
 	String fileName = filePart.getFilename();
 	File file = filePart.getFile();
 
-	Images image = new Images(fileName, currentUser());
-	if(!image.save(file)) return badRequest();
+	Images image = new Images(file, fileName, currentUser());
+	image.save();
 
 	return ok(show.render(image));
     }
@@ -32,12 +31,8 @@ public class ImagesController extends YouScene {
 
   public static Result delete(Long id) {
     Images image = Images.find.byId(id);
-    try {
-	image.delete();
-    } catch(Exception e) {
-	e.printStackTrace();
-	return badRequest();
-    }
+    image.delete();
+
     return ok();
   }
 }
