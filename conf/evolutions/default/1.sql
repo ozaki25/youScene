@@ -21,6 +21,16 @@ create table blogs (
   constraint pk_blogs primary key (id))
 ;
 
+create table comments (
+  id                        bigint auto_increment not null,
+  article                   TEXT,
+  author_id                 bigint,
+  blog_id                   bigint,
+  created_date              datetime not null,
+  updated_date              datetime not null,
+  constraint pk_comments primary key (id))
+;
+
 create table images (
   id                        bigint auto_increment not null,
   image_name                varchar(255),
@@ -65,12 +75,16 @@ alter table accesses add constraint fk_accesses_user_2 foreign key (user_id) ref
 create index ix_accesses_user_2 on accesses (user_id);
 alter table blogs add constraint fk_blogs_author_3 foreign key (author_id) references users (id) on delete restrict on update restrict;
 create index ix_blogs_author_3 on blogs (author_id);
-alter table images add constraint fk_images_user_4 foreign key (user_id) references users (id) on delete restrict on update restrict;
-create index ix_images_user_4 on images (user_id);
-alter table likes add constraint fk_likes_blog_5 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
-create index ix_likes_blog_5 on likes (blog_id);
-alter table likes add constraint fk_likes_user_6 foreign key (user_id) references users (id) on delete restrict on update restrict;
-create index ix_likes_user_6 on likes (user_id);
+alter table comments add constraint fk_comments_author_4 foreign key (author_id) references users (id) on delete restrict on update restrict;
+create index ix_comments_author_4 on comments (author_id);
+alter table comments add constraint fk_comments_blog_5 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
+create index ix_comments_blog_5 on comments (blog_id);
+alter table images add constraint fk_images_user_6 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_images_user_6 on images (user_id);
+alter table likes add constraint fk_likes_blog_7 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
+create index ix_likes_blog_7 on likes (blog_id);
+alter table likes add constraint fk_likes_user_8 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_likes_user_8 on likes (user_id);
 
 
 
@@ -87,6 +101,8 @@ drop table accesses;
 drop table blogs;
 
 drop table tags_blogs;
+
+drop table comments;
 
 drop table images;
 
