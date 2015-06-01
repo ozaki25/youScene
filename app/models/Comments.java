@@ -21,7 +21,7 @@ public class Comments extends Model {
     @Column(columnDefinition="TEXT")
     public String article;
     @ManyToOne
-    public Users author;
+    public Users user;
     @ManyToOne
     public Blogs blog;
     @CreatedTimestamp

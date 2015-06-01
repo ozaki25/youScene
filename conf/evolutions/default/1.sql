@@ -24,7 +24,7 @@ create table blogs (
 create table comments (
   id                        bigint auto_increment not null,
   article                   TEXT,
-  author_id                 bigint,
+  user_id                   bigint,
   blog_id                   bigint,
   created_date              datetime not null,
   updated_date              datetime not null,
@@ -75,8 +75,8 @@ alter table accesses add constraint fk_accesses_user_2 foreign key (user_id) ref
 create index ix_accesses_user_2 on accesses (user_id);
 alter table blogs add constraint fk_blogs_author_3 foreign key (author_id) references users (id) on delete restrict on update restrict;
 create index ix_blogs_author_3 on blogs (author_id);
-alter table comments add constraint fk_comments_author_4 foreign key (author_id) references users (id) on delete restrict on update restrict;
-create index ix_comments_author_4 on comments (author_id);
+alter table comments add constraint fk_comments_user_4 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_comments_user_4 on comments (user_id);
 alter table comments add constraint fk_comments_blog_5 foreign key (blog_id) references blogs (id) on delete restrict on update restrict;
 create index ix_comments_blog_5 on comments (blog_id);
 alter table images add constraint fk_images_user_6 foreign key (user_id) references users (id) on delete restrict on update restrict;
