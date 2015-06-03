@@ -27,7 +27,7 @@ public class CommentsController extends YouScene {
     return ok();
   }
 
-  public static Result update(Long commentId) {
+  public static Result update(Long blogId, Long commentId) {
     Form<Comments> form = commentForm.bindFromRequest();
     Comments comment = Comments.find.byId(commentId);
     if(form.hasErrors()) return badRequest();
@@ -39,7 +39,7 @@ public class CommentsController extends YouScene {
     return ok();
   }
 
-  public static Result delete(Long commentId) {
+  public static Result delete(Long blogId, Long commentId) {
     Comments comment = Comments.find.byId(commentId);
     comment.delete();
 

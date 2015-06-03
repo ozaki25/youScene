@@ -13,11 +13,13 @@ import models.Blogs;
 import models.Likes;
 import models.Users;
 import models.Tags;
+import models.Comments;
 import views.html.blogs.*;
 
 public class BlogsController extends YouScene {
   final static Form<Blogs> blogForm = form(Blogs.class);
   final static Form<Tags> tagForm = form(Tags.class);
+  final static Form<Comments> commentForm = form(Comments.class);
 
   @Authenticated(Authenticate.class)
   public static Result index(int page) {
@@ -30,7 +32,7 @@ public class BlogsController extends YouScene {
     Users user = currentUser();
     if(!user.isAuthor(blog)) user.addAccess(blog);
 
-    return ok(show.render(blog, user));
+    return ok(show.render(blog, user, commentForm));
   }
 
   @Authenticated(Authenticate.class)

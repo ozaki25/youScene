@@ -129,6 +129,10 @@ a:focus {
   text-align:center;
 }
 
+.btn-comment {
+  text-align:right;
+}
+
 .index-blogs,
 .index-tags,
 .show-blog {

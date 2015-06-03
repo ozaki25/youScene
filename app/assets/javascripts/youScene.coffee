@@ -156,4 +156,19 @@ $ ->
     $("div.preview").append "<pre class=\"show-article\">#{article}</pre>"
     return
 
+  #コメント
+  $("input.post-comment").click ->
+    comment = $("iput.post-comment").val()
+    $.ajax
+      url: $(this).attr "url"
+      type: "POST"
+      data:
+        article: article
+    .done ->
+      alert "successed comment!"
+      return
+    .fail ->
+      alert "failed comment ><"
+      return
+    return
 return

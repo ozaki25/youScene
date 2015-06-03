@@ -18,6 +18,11 @@ POST    /youScene/blogs/:id/likes          controllers.LikesController.create(id
 
 GET     /youScene/blogs/:id/accesses       controllers.AccessesController.index(id: Long)
 
+POST    /youScene/blogs/:blogId/comments                     controllers.CommentsController.create(blogId: Long)
+POST    /youScene/blogs/:blogId/comments/:commentId          controllers.CommentsController.update(blogId: Long, commentId: Long)
+POST    /youScene/blogs/:blogId/comments/:commentId/delete   controllers.CommentsController.delete(blogId: Long, commentId: Long)
+
+
 GET     /youScene/tags                     controllers.TagsController.index
 POST    /youScene/tags                     controllers.TagsController.create
 GET     /youScene/tags/list                controllers.TagsController.list(term: String)
