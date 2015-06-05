@@ -158,14 +158,16 @@ $ ->
 
   #コメント
   $("input.post-comment").click ->
-    comment = $("iput.post-comment").val()
+    article = $("textarea#article").val()
+    alert article
     $.ajax
       url: $(this).attr "url"
       type: "POST"
       data:
         article: article
-    .done ->
+    .done (data) ->
       alert "successed comment!"
+      $("div.comments").append data
       return
     .fail ->
       alert "failed comment ><"

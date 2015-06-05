@@ -11,6 +11,7 @@ import static play.data.Form.*;
 import models.Comments;
 import models.Blogs;
 import models.Users;
+import views.html.comments.*;
 
 public class CommentsController extends YouScene {
   final static Form<Comments> commentForm = form(Comments.class);
@@ -24,7 +25,7 @@ public class CommentsController extends YouScene {
     comment.user = currentUser();
     comment.save();
 
-    return ok();
+    return ok(show.render(comment));
   }
 
   public static Result update(Long blogId, Long commentId) {

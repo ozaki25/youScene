@@ -1,4 +1,4 @@
-@(commentForm: Form[Comments])
+@(commentForm: Form[Comments])(blog: Blogs)
 
 @helper.textarea(
   commentForm("article"),
@@ -8,5 +8,5 @@
   'rows -> "5"
 )
 <div class="btn-comment">
-  <input type="submit" class="btn btn-xs btn-youScene post-comment" value="コメント">
+  <input type="submit" class="btn btn-xs btn-youScene post-comment" value="コメント" url="@routes.CommentsController.create(blog.id)">
 </div>

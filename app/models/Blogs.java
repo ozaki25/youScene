@@ -40,6 +40,8 @@ public class Blogs extends Model {
     @ManyToMany(cascade=CascadeType.REMOVE, mappedBy="blogs")
     public List<Tags> tags = new ArrayList<Tags>();
     public List<String> tagNames = new ArrayList<String>();
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="blog")
+    public List<Comments> comments;
 
     public static Finder<Long, Blogs> find = new Finder(Long.class, Blogs.class);
     final static int perPageBlogs = 5;

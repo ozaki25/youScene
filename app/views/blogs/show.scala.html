@@ -37,7 +37,12 @@
           }
         </div>
       </div>
-      @comments.newComment(commentForm)
+      @comments.newComment(commentForm)(blog)
+      <div class="comments">
+        @for(comment <- blog.comments) {
+          @comments.show(comment)
+        }
+      </div>
     </div>
     <div class="col-md-3">
       <div class="show-author">
