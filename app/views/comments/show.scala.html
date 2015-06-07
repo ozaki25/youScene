@@ -1,6 +1,10 @@
 @(comment: Comments)
-<div class="show-comment right-balloon">
+<div class="show-comment right-balloon" comment_id="@comment.id">
   <span class="comment-date">@comment.createdDate.format("yyyy年M月d日 H時m分")</span>
   <span class="comment-user">@comment.user.name</span>
+  <span class="comment-delete-link">
+    <a href="#" comment_id="@comment.id" url="@routes.CommentsController.delete(comment.blog.id, comment.id)"
+       class="comment-delete" onclick="return window.confirm('削除します。よろしいですか?')">×</a>
+  </span>
   <pre class="comment-article">@Html(comment.article)</pre>
 </div>

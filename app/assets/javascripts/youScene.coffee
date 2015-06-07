@@ -172,4 +172,17 @@ $ ->
       alert "failed comment ><"
       return
     return
+
+  $("div.comments").on "click", "a.comment-delete", ->
+    comment_id = $(this).attr "comment_id"
+    $.ajax
+      url: $(this).attr "url"
+      type: "POST"
+    .done ->
+      $("div[comment_id=#{comment_id}]").remove()
+      return
+    .fail ->
+      alert "failed delete ><"
+      return
+    return
 return

@@ -268,6 +268,10 @@ a.thumbnail > img {
     padding: 0px;
 }
 
+.comment-delete-link {
+    font-size: 120%;
+    float: right;
+}
 
 .right-balloon {
     position: relative;
